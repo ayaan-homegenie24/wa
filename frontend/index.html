@@ -232,8 +232,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div id="v-templates" class="view">
     <div class="main">
       <div class="page">
-        <div class="page-title" style="margin-bottom:4px">Message templates</div>
-        <div class="page-sub">Live from your WhatsApp Business Account.</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+  <div class="page-title">Message templates</div>
+  <a href="https://business.facebook.com/wa/manage/message-templates/" target="_blank">
+    <button class="btn-primary"><i class="ti ti-plus" style="font-size:15px"></i> Create template</button>
+  </a>
+</div>
+<div class="page-sub">Live from your WhatsApp Business Account. Create templates in Meta Business Manager — they appear here once approved.</div>
         <div id="templates-list" style="display:flex;flex-direction:column;gap:12px">
           <div style="color:var(--tx3);text-align:center;padding:40px">Loading…</div>
         </div>
