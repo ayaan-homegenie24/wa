@@ -1,0 +1,51 @@
+# ============================================================
+# META WHATSAPP CLOUD API — ENVIRONMENT VARIABLES
+# Replace every value marked <<<REPLACE_THIS>>> with your own
+# ============================================================
+
+# ----------------------------------------------------------
+# 1. META APP CREDENTIALS
+#    Source: https://developers.facebook.com/apps/
+#    → Your App → Settings → Basic
+# ----------------------------------------------------------
+APP_ID=<<<REPLACE_THIS_APP_ID>>>
+APP_SECRET=<<<REPLACE_THIS_APP_SECRET>>>
+
+# ----------------------------------------------------------
+# 2. WHATSAPP BUSINESS ACCOUNT (WABA)
+#    Source: Meta Business Manager → WhatsApp Accounts
+# ----------------------------------------------------------
+WABA_ID=<<<REPLACE_THIS_WABA_ID>>>
+
+# ----------------------------------------------------------
+# 3. PHONE NUMBER ID
+#    Source: Meta Developers → Your App → WhatsApp → API Setup
+#    (Labelled "Phone number ID" — NOT the actual phone number)
+# ----------------------------------------------------------
+PHONE_NUMBER_ID=<<<REPLACE_THIS_PHONE_NUMBER_ID>>>
+
+# ----------------------------------------------------------
+# 4. PERMANENT ACCESS TOKEN
+#    Source: Meta Business Manager → System Users → Generate Token
+#    (Grant whatsapp_business_messaging + whatsapp_business_management)
+# ----------------------------------------------------------
+ACCESS_TOKEN=<<<REPLACE_THIS_PERMANENT_ACCESS_TOKEN>>>
+
+# ----------------------------------------------------------
+# 5. WEBHOOK VERIFY TOKEN
+#    This is a string YOU invent — can be anything, e.g. "my_secret_123"
+#    Must match exactly what you enter in the Meta webhook config screen
+# ----------------------------------------------------------
+WEBHOOK_VERIFY_TOKEN=<<<REPLACE_THIS_WEBHOOK_VERIFY_TOKEN>>>
+
+# ----------------------------------------------------------
+# 6. API VERSION
+#    Keep up-to-date: https://developers.facebook.com/docs/graph-api/changelog
+# ----------------------------------------------------------
+GRAPH_API_VERSION=v19.0
+
+# ----------------------------------------------------------
+# 7. SERVER CONFIG
+# ----------------------------------------------------------
+PORT=3000
+NODE_ENV=development
