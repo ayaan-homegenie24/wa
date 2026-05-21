@@ -10,7 +10,6 @@
 :root{--wa:#25D366;--wa-dk:#128C7E;--bg:#fff;--bg2:#f8fafc;--bg3:#f1f5f9;--tx:#0f172a;--tx2:#64748b;--tx3:#94a3b8;--bd:#e2e8f0;--bd2:#cbd5e1}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg3);color:var(--tx);font-size:14px}
 .app{display:flex;height:100vh;background:var(--bg)}
-/* sidebar */
 .sidebar{width:60px;background:#1a2332;display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:4px;flex-shrink:0}
 .s-logo{width:36px;height:36px;background:var(--wa);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
 .s-logo i{color:#fff;font-size:20px}
@@ -21,7 +20,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .s-btn i{font-size:20px}
 .s-sep{width:30px;height:0.5px;background:#2d3f52;margin:6px 0}
 .s-avatar{width:32px;height:32px;border-radius:50%;background:var(--wa-dk);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;margin-top:auto;cursor:pointer}
-/* panel */
 .panel{width:300px;border-right:0.5px solid var(--bd);display:flex;flex-direction:column;flex-shrink:0;background:var(--bg)}
 .panel-head{padding:16px 14px 10px;border-bottom:0.5px solid var(--bd)}
 .panel-head h2{font-size:16px;font-weight:600;margin-bottom:10px}
@@ -44,26 +42,30 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .ci-time{font-size:11px;color:var(--tx3);flex-shrink:0;margin-left:4px}
 .ci-msg{font-size:12px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;justify-content:space-between;align-items:center}
 .ci-badge{min-width:18px;height:18px;border-radius:9px;background:var(--wa);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0 4px;flex-shrink:0}
-/* main */
 .main{flex:1;display:flex;flex-direction:column;min-width:0}
 .chat-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:0.5px solid var(--bd);flex-shrink:0;background:var(--bg)}
 .chat-head-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
 .chat-head-info{flex:1}
 .chat-head-name{font-size:14px;font-weight:600}
 .chat-head-sub{font-size:12px;color:var(--tx2)}
-.head-actions{display:flex;gap:4px}
+.head-actions{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
 .icon-btn{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--tx2);transition:all .12s;border:0.5px solid var(--bd);background:var(--bg)}
 .icon-btn:hover{background:var(--bg2);color:var(--tx)}
 .icon-btn i{font-size:16px}
-.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#f0f2f5}
+.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:8px;background:#f0f2f5}
 .msg{display:flex;flex-direction:column;max-width:68%}
 .msg.in{align-self:flex-start}
 .msg.out{align-self:flex-end}
 .msg-bubble{padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.5}
 .msg.in .msg-bubble{background:#fff;border-bottom-left-radius:4px}
 .msg.out .msg-bubble{background:#dcf8c6;border-bottom-right-radius:4px}
-.msg-time{font-size:11px;color:#999;margin-top:3px}
-.msg.out .msg-time{align-self:flex-end}
+.msg-meta{display:flex;align-items:center;gap:4px;margin-top:3px}
+.msg.out .msg-meta{justify-content:flex-end}
+.msg-time{font-size:11px;color:#999}
+.tick{font-size:14px;line-height:1}
+.tick.sent{color:#94a3b8}
+.tick.delivered{color:#94a3b8}
+.tick.read{color:#53bdeb}
 .day-sep{text-align:center;font-size:11px;color:#999;padding:4px 10px;background:#e1e5e9;border-radius:10px;align-self:center}
 .chat-input-bar{border-top:0.5px solid var(--bd);padding:10px 14px;flex-shrink:0;background:var(--bg)}
 .assign-bar{display:flex;gap:8px;padding:0 0 8px;border-bottom:0.5px solid var(--bd);margin-bottom:8px;flex-wrap:wrap}
@@ -73,7 +75,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .chat-textarea:focus{border-color:var(--wa)}
 .send-btn{width:38px;height:38px;background:var(--wa);border:none;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
 .send-btn i{color:#fff;font-size:18px}
-/* pages */
 .page{flex:1;overflow-y:auto;padding:24px}
 .page-title{font-size:18px;font-weight:600;margin-bottom:4px}
 .page-sub{font-size:13px;color:var(--tx2);margin-bottom:20px}
@@ -95,22 +96,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .stat-label{font-size:12px;color:var(--tx2);margin-bottom:6px}
 .stat-val{font-size:22px;font-weight:600}
 .form-group{margin-bottom:14px}
-.form-label{font-size:12px;color:var(--tx2);margin-bottom:5px;display:block}
+.form-label{font-size:12px;color:var(--tx2);margin-bottom:5px;display:block;font-weight:500}
 .form-input{width:100%;padding:8px 12px;border:0.5px solid var(--bd2);border-radius:8px;font-size:13px;outline:none;color:var(--tx);background:var(--bg);font-family:inherit}
 .form-input:focus{border-color:var(--wa)}
 .view{display:none}
 .view.active{display:flex;flex:1}
 .chat-wrap{display:flex;flex-direction:column;flex:1}
-/* empty state */
 .empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--tx3);gap:10px}
 .empty i{font-size:48px;opacity:.3}
-.empty p{font-size:14px}
-/* toast */
 .toast{position:fixed;bottom:24px;right:24px;background:#1a2332;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;opacity:0;transition:opacity .3s;z-index:999;pointer-events:none}
 .toast.show{opacity:1}
-/* connection dot */
 .conn-dot{width:8px;height:8px;border-radius:50%;background:#94a3b8;flex-shrink:0}
 .conn-dot.live{background:#22c55e;box-shadow:0 0 6px #22c55e}
+/* template builder */
+.tpl-builder{background:var(--bg);border:0.5px solid var(--bd);border-radius:12px;padding:24px;margin-bottom:16px}
+.tpl-preview{background:#f0f2f5;border-radius:12px;padding:16px;min-height:80px}
+.tpl-bubble{background:#fff;border-radius:10px;border-bottom-left-radius:3px;padding:10px 14px;font-size:13px;line-height:1.6;max-width:300px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.tpl-bubble .tpl-header{font-weight:600;margin-bottom:4px}
+.tpl-bubble .tpl-footer{font-size:11px;color:#94a3b8;margin-top:6px}
+.tpl-bubble .tpl-btns{border-top:0.5px solid #e2e8f0;margin-top:10px;padding-top:8px;display:flex;flex-direction:column;gap:6px}
+.tpl-bubble .tpl-btn{color:#128C7E;font-size:13px;font-weight:600;text-align:center}
+.btn-add{background:none;border:0.5px dashed var(--bd2);border-radius:8px;padding:6px 14px;font-size:12px;color:var(--tx2);cursor:pointer;width:100%;margin-top:6px}
+.btn-add:hover{border-color:var(--wa);color:var(--wa-dk)}
+.btn-remove{background:none;border:none;color:#dc2626;cursor:pointer;font-size:18px;padding:0 4px}
 </style>
 </head>
 <body>
@@ -131,8 +139,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div id="v-inbox" class="view active">
     <div class="panel">
       <div class="panel-head">
-        <h2 style="display:flex;align-items:center;gap:8px">Inbox <div class="conn-dot" id="conn-dot" title="Not connected"></div></h2>
-        <div class="search-box"><i class="ti ti-search"></i><input placeholder="Search conversations…" oninput="filterConvos(this.value)"/></div>
+        <h2 style="display:flex;align-items:center;gap:8px">Inbox <div class="conn-dot" id="conn-dot"></div></h2>
+        <div class="search-box"><i class="ti ti-search"></i><input placeholder="Search…" oninput="renderChatList(this.value)"/></div>
       </div>
       <div class="tabs">
         <div class="tab active" onclick="setTab(this,'all')">All</div>
@@ -140,10 +148,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="tab" onclick="setTab(this,'resolved')">Resolved</div>
       </div>
       <div class="panel-list" id="chat-list">
-        <div class="empty" style="padding:40px 0"><i class="ti ti-message-off"></i><p>No conversations yet</p><p style="font-size:12px">Messages will appear when customers write to you</p></div>
+        <div class="empty" style="padding:40px 0"><i class="ti ti-message-off"></i><p>No conversations yet</p></div>
       </div>
     </div>
-    <div class="main" id="chat-main">
+    <div class="main">
       <div class="empty" id="chat-placeholder"><i class="ti ti-message-circle-2"></i><p>Select a conversation</p></div>
       <div class="chat-wrap" id="chat-panel" style="display:none">
         <div class="chat-head">
@@ -153,16 +161,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
             <div class="chat-head-sub" id="ch-sub">—</div>
           </div>
           <div class="head-actions">
-            <select class="assign-sel" id="agent-sel" onchange="patchConvo('agent',this.value)" style="margin-right:4px">
+            <select class="assign-sel" id="agent-sel" onchange="patchConvo('agent',this.value)">
               <option value="">Assign agent</option>
               <option>Ayaan</option><option>Priya</option><option>Rohan</option><option>Meera</option>
             </select>
-            <select class="assign-sel" id="label-sel" onchange="patchConvo('label',this.value)" style="margin-right:4px">
-              <option value="">Add label</option>
+            <select class="assign-sel" id="label-sel" onchange="patchConvo('label',this.value)">
+              <option value="">Label</option>
               <option>Lead</option><option>VIP</option><option>Support</option>
             </select>
-            <div class="icon-btn" id="resolve-btn" onclick="toggleResolve()" title="Resolve / Reopen"><i class="ti ti-check"></i></div>
-            <div class="icon-btn" title="More"><i class="ti ti-dots-vertical"></i></div>
+            <div class="icon-btn" id="resolve-btn" onclick="toggleResolve()" title="Resolve"><i class="ti ti-check"></i></div>
           </div>
         </div>
         <div class="chat-body" id="chat-body"></div>
@@ -188,11 +195,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="main">
       <div class="page">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-          <div><div class="page-title">Contacts</div><div class="page-sub" style="margin:0" id="contacts-count">Loading…</div></div>
+          <div><div class="page-title">Contacts</div><div style="font-size:13px;color:var(--tx2)" id="contacts-count">—</div></div>
         </div>
         <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;overflow:hidden">
           <table class="data-table"><thead><tr><th>Name</th><th>Phone</th><th>Label</th><th>Last message</th><th>Status</th></tr></thead>
-          <tbody id="contacts-table"><tr><td colspan="5" style="text-align:center;color:var(--tx3);padding:20px">Loading…</td></tr></tbody></table>
+          <tbody id="contacts-table"><tr><td colspan="5" style="text-align:center;color:var(--tx3);padding:24px">No contacts yet</td></tr></tbody></table>
         </div>
       </div>
     </div>
@@ -212,17 +219,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <div class="form-group"><label class="form-label">Template</label>
             <select class="form-input" id="bc-template"><option value="">Select template…</option></select>
           </div>
-          <div class="form-group"><label class="form-label">Recipients — phone numbers (one per line, with country code, no +)</label>
-            <textarea class="form-input" id="bc-recipients" rows="5" placeholder="919876543210&#10;918765432109&#10;917654321098"></textarea>
+          <div class="form-group"><label class="form-label">Recipients — phone numbers (one per line, country code, no +)</label>
+            <textarea class="form-input" id="bc-recipients" rows="5" placeholder="919876543210&#10;918765432109"></textarea>
           </div>
           <div style="display:flex;gap:8px;align-items:center">
             <button class="btn-primary" onclick="sendBroadcast()" id="bc-btn">Send broadcast</button>
             <button class="btn-secondary" onclick="toggleBcast()">Cancel</button>
             <span id="bc-status" style="font-size:12px;color:var(--tx2)"></span>
           </div>
-        </div>
-        <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px">
-          <div style="font-size:14px;font-weight:600;margin-bottom:8px;color:var(--tx2)">Broadcasts are sent directly via the WhatsApp API to the numbers you enter above. Check your Meta Business Manager for delivery reports.</div>
         </div>
       </div>
     </div>
@@ -233,12 +237,87 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="main">
       <div class="page">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-  <div class="page-title">Message templates</div>
-  <a href="https://business.facebook.com/wa/manage/message-templates/" target="_blank">
-    <button class="btn-primary"><i class="ti ti-plus" style="font-size:15px"></i> Create template</button>
-  </a>
-</div>
-<div class="page-sub">Live from your WhatsApp Business Account. Create templates in Meta Business Manager — they appear here once approved.</div>
+          <div class="page-title">Message templates</div>
+          <button class="btn-primary" onclick="toggleTplBuilder()"><i class="ti ti-plus" style="font-size:15px"></i> Create template</button>
+        </div>
+        <div class="page-sub">Your WhatsApp Business Account templates.</div>
+
+        <!-- TEMPLATE BUILDER -->
+        <div id="tpl-builder" class="tpl-builder" style="display:none">
+          <div style="font-size:15px;font-weight:600;margin-bottom:16px">New template</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+            <!-- LEFT: form -->
+            <div>
+              <div class="form-group">
+                <label class="form-label">Template name <span style="color:var(--tx3);font-weight:400">(lowercase, underscores only)</span></label>
+                <input class="form-input" id="tn-name" placeholder="e.g. order_confirmation" oninput="updatePreview()"/>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <div class="form-group">
+                  <label class="form-label">Category</label>
+                  <select class="form-input" id="tn-category" onchange="updatePreview()">
+                    <option value="MARKETING">Marketing</option>
+                    <option value="UTILITY">Utility</option>
+                    <option value="AUTHENTICATION">Authentication</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Language</label>
+                  <select class="form-input" id="tn-language" onchange="updatePreview()">
+                    <option value="en_US">English (US)</option>
+                    <option value="en_GB">English (UK)</option>
+                    <option value="hi">Hindi</option>
+                    <option value="ta">Tamil</option>
+                    <option value="te">Telugu</option>
+                    <option value="mr">Marathi</option>
+                    <option value="ar">Arabic</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Header <span style="color:var(--tx3);font-weight:400">(optional)</span></label>
+                <input class="form-input" id="tn-header" placeholder="Your header text" oninput="updatePreview()"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Body <span style="color:#dc2626">*</span> <span style="color:var(--tx3);font-weight:400">Use {{1}} {{2}} for variables</span></label>
+                <textarea class="form-input" id="tn-body" rows="4" placeholder="Hello {{1}}, your order {{2}} is confirmed!" oninput="updatePreview()"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Footer <span style="color:var(--tx3);font-weight:400">(optional)</span></label>
+                <input class="form-input" id="tn-footer" placeholder="Reply STOP to unsubscribe" oninput="updatePreview()"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Buttons <span style="color:var(--tx3);font-weight:400">(optional, max 3)</span></label>
+                <div id="tn-buttons"></div>
+                <button class="btn-add" onclick="addButton()"><i class="ti ti-plus"></i> Add button</button>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+                <button class="btn-primary" onclick="submitTemplate()" id="tn-submit-btn">Submit for approval</button>
+                <button class="btn-secondary" onclick="toggleTplBuilder()">Cancel</button>
+                <span id="tn-status" style="font-size:12px;color:var(--tx2)"></span>
+              </div>
+            </div>
+            <!-- RIGHT: preview -->
+            <div>
+              <div class="form-label" style="margin-bottom:10px">Preview</div>
+              <div class="tpl-preview">
+                <div class="tpl-bubble">
+                  <div class="tpl-header" id="prev-header" style="display:none"></div>
+                  <div id="prev-body" style="color:#94a3b8;font-size:13px">Your message will appear here…</div>
+                  <div class="tpl-footer" id="prev-footer" style="display:none"></div>
+                  <div class="tpl-btns" id="prev-btns" style="display:none"></div>
+                </div>
+              </div>
+              <div style="margin-top:12px;font-size:12px;color:var(--tx3);line-height:1.8">
+                <div>⏱ Approval takes 1–24 hours</div>
+                <div>✅ Only approved templates can be sent first</div>
+                <div>📋 Template name must be unique in your WABA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TEMPLATES LIST -->
         <div id="templates-list" style="display:flex;flex-direction:column;gap:12px">
           <div style="color:var(--tx3);text-align:center;padding:40px">Loading…</div>
         </div>
@@ -251,17 +330,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="main">
       <div class="page">
         <div class="page-title">Analytics</div>
-        <div class="page-sub">Based on conversations in this session.</div>
-        <div class="stat-row" id="analytics-stats">
+        <div class="page-sub">Based on live conversations.</div>
+        <div class="stat-row">
           <div class="stat-card"><div class="stat-label">Total conversations</div><div class="stat-val" id="an-total">0</div></div>
           <div class="stat-card"><div class="stat-label">Open</div><div class="stat-val" id="an-open" style="color:#2563eb">0</div></div>
           <div class="stat-card"><div class="stat-label">Resolved</div><div class="stat-val" id="an-resolved" style="color:#16a34a">0</div></div>
           <div class="stat-card"><div class="stat-label">Total messages</div><div class="stat-val" id="an-msgs">0</div></div>
         </div>
-        <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:16px">
-          <div style="font-size:14px;font-weight:600;margin-bottom:12px">All conversations</div>
+        <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;overflow:hidden">
           <table class="data-table"><thead><tr><th>Contact</th><th>Phone</th><th>Messages</th><th>Status</th><th>Label</th><th>Agent</th></tr></thead>
-          <tbody id="analytics-table"><tr><td colspan="6" style="text-align:center;color:var(--tx3);padding:20px">No data yet</td></tr></tbody></table>
+          <tbody id="analytics-table"><tr><td colspan="6" style="text-align:center;color:var(--tx3);padding:24px">No data yet</td></tr></tbody></table>
         </div>
       </div>
     </div>
@@ -273,22 +351,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="page">
         <div class="page-title" style="margin-bottom:20px">Settings</div>
         <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px;margin-bottom:12px">
-          <div style="font-size:14px;font-weight:600;margin-bottom:14px">Connection status</div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:12px">Connection status</div>
           <div id="health-status" style="font-size:13px;color:var(--tx2)">Checking…</div>
         </div>
         <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px;margin-bottom:12px">
-          <div style="font-size:14px;font-weight:600;margin-bottom:14px">Webhook setup</div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:12px">Webhook</div>
           <div style="font-size:13px;color:var(--tx2);line-height:2">
-            <div>1. Run your server publicly (use <strong>ngrok http 3000</strong> locally)</div>
-            <div>2. Go to <strong>developers.facebook.com → Your App → WhatsApp → Configuration</strong></div>
-            <div>3. Callback URL: <code style="background:var(--bg2);padding:2px 8px;border-radius:4px">https://YOUR_DOMAIN/webhook</code></div>
-            <div>4. Verify token: the value of <code style="background:var(--bg2);padding:2px 8px;border-radius:4px">WEBHOOK_VERIFY_TOKEN</code> in your .env</div>
-            <div>5. Subscribe to: <code style="background:var(--bg2);padding:2px 8px;border-radius:4px">messages</code></div>
+            <div>Callback URL: <code style="background:var(--bg2);padding:2px 8px;border-radius:4px">https://wa-production-e26f.up.railway.app/webhook</code></div>
+            <div>Subscribe to: <code style="background:var(--bg2);padding:2px 8px;border-radius:4px">messages</code></div>
           </div>
         </div>
         <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px">
-          <div style="font-size:14px;font-weight:600;margin-bottom:14px">Send a test message</div>
-          <div class="form-group"><label class="form-label">Phone number (country code, no +)</label><input class="form-input" id="test-to" placeholder="919876543210"/></div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:12px">Send a test message</div>
+          <div class="form-group"><label class="form-label">Phone (country code, no +)</label><input class="form-input" id="test-to" placeholder="919876543210"/></div>
           <div class="form-group"><label class="form-label">Message</label><input class="form-input" id="test-msg" placeholder="Hello from my WhatsApp API!"/></div>
           <div style="display:flex;gap:8px;align-items:center">
             <button class="btn-primary" onclick="sendTestMsg()">Send test</button>
@@ -299,227 +374,244 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script>
 // ── STATE ────────────────────────────────────────────────────────────────────
-let convos    = {};   // phone → {name,phone,messages,unread,agent,label,status}
+let convos      = {};
 let activePhone = null;
 let tabFilter   = 'all';
 let templates   = [];
+// Track client-generated message IDs to avoid duplicates from SSE echo
+const pendingMsgIds = new Set();
 
 const COLORS = [
   ['#dcfce7','#166534'],['#dbeafe','#1e40af'],['#fef3c7','#92400e'],
   ['#fce7f3','#9d174d'],['#ede9fe','#5b21b6'],['#fee2e2','#991b1b'],['#e0f2fe','#0c4a6e']
 ];
-const colorMap = {};
-let colorIdx = 0;
-function colorFor(phone) {
-  if (!colorMap[phone]) colorMap[phone] = COLORS[(colorIdx++) % COLORS.length];
-  return colorMap[phone];
-}
-function ini(name) { return (name||'?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(); }
-function timeAgo(t) { if(!t)return ''; return t; }
+const colorMap = {}; let colorIdx = 0;
+function colorFor(p){ if(!colorMap[p])colorMap[p]=COLORS[(colorIdx++)%COLORS.length]; return colorMap[p]; }
+function ini(n){ return (n||'?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(); }
 
 // ── TOAST ────────────────────────────────────────────────────────────────────
-function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg; el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'), 3000);
+function toast(msg){ const e=document.getElementById('toast'); e.textContent=msg; e.classList.add('show'); setTimeout(()=>e.classList.remove('show'),3500); }
+
+// ── TICK ICON ─────────────────────────────────────────────────────────────────
+function tickIcon(status){
+  if(status==='read')     return '<span class="tick read">✓✓</span>';
+  if(status==='delivered')return '<span class="tick delivered">✓✓</span>';
+  return '<span class="tick sent">✓</span>';
 }
 
-// ── SSE — receive live events from server ─────────────────────────────────────
-function connectSSE() {
+// ── SSE ──────────────────────────────────────────────────────────────────────
+function connectSSE(){
   const es = new EventSource('/events');
   es.addEventListener('new_message', e => {
-    const {phone, message, meta} = JSON.parse(e.data);
-    if (!convos[phone]) convos[phone] = { name: meta.name||phone, phone, messages:[], unread:0, agent:'', label:'', status:'open' };
-    const c = convos[phone];
-    c.name   = meta.name || c.name;
-    c.unread = meta.unread;
-    c.status = meta.status || 'open';
+    const {phone, message, meta, isEcho} = JSON.parse(e.data);
+
+    // DEDUP: if this is an echo of our own outgoing message, skip — we already added it optimistically
+    if(isEcho && pendingMsgIds.has(message.clientMsgId)) {
+      pendingMsgIds.delete(message.clientMsgId);
+      // Just update the message ID in our local store
+      const c = convos[phone];
+      if(c){ const m=c.messages[c.messages.length-1]; if(m&&m.clientMsgId===message.clientMsgId) m.id=message.id; }
+      return;
+    }
+
+    if(!convos[phone]) convos[phone]={name:meta.name||phone,phone,messages:[],unread:0,agent:'',label:'',status:'open'};
+    const c=convos[phone];
+    c.name=meta.name||c.name; c.unread=meta.unread; c.status=meta.status||'open';
     c.messages.push(message);
-    if (phone === activePhone) { appendMsg(message); c.unread = 0; }
+
+    if(phone===activePhone){
+      appendMsg(message);
+      // Mark as read since agent has the chat open
+      markRead(phone);
+      c.unread=0;
+    }
     renderChatList();
-    if (message.dir === 'in') toast(`📩 ${c.name}: ${message.text}`);
+    if(message.dir==='in') toast(`📩 ${c.name}: ${message.text}`);
   });
-  es.addEventListener('conversation_updated', e => {
-    const d = JSON.parse(e.data);
-    if (convos[d.phone]) Object.assign(convos[d.phone], d);
-    renderChatList();
-    if (d.phone === activePhone) updateChatHead();
-  });
+
   es.addEventListener('status_update', e => {
-    // could show tick/double tick later
+    const {id, status, phone} = JSON.parse(e.data);
+    // Update message status in local store
+    const c = convos[phone];
+    if(c){ const msg=c.messages.find(m=>m.id===id); if(msg){ msg.status=status; if(phone===activePhone) updateMsgTick(id,status); } }
   });
-  es.onopen  = () => document.getElementById('conn-dot').classList.add('live');
-  es.onerror = () => document.getElementById('conn-dot').classList.remove('live');
+
+  es.addEventListener('conversation_updated', e => {
+    const d=JSON.parse(e.data);
+    if(convos[d.phone]) Object.assign(convos[d.phone],d);
+    renderChatList();
+    if(d.phone===activePhone) updateChatHead();
+  });
+
+  es.onopen  = ()=>document.getElementById('conn-dot').classList.add('live');
+  es.onerror = ()=>document.getElementById('conn-dot').classList.remove('live');
 }
 
-// ── FETCH CONVERSATIONS FROM SERVER ──────────────────────────────────────────
-async function loadConvos() {
-  try {
-    const list = await fetch('/api/conversations').then(r=>r.json());
-    list.forEach(c => {
-      convos[c.phone] = convos[c.phone] || { messages: [] };
-      Object.assign(convos[c.phone], c);
-    });
-    renderChatList();
-  } catch(e) { console.warn('Could not load convos', e); }
+function updateMsgTick(id, status){
+  const el = document.querySelector(`[data-msg-id="${id}"] .tick`);
+  if(el){ el.className='tick '+status; el.textContent=status==='sent'?'✓':'✓✓'; }
 }
 
-async function loadConvoMessages(phone) {
-  try {
-    const c = await fetch(`/api/conversations/${phone}`).then(r=>r.json());
-    convos[phone] = c;
+// ── MARK READ (only when agent opens chat) ────────────────────────────────────
+async function markRead(phone){
+  try{ await fetch(`/api/conversations/${phone}/read`,{method:'POST'}); } catch(e){}
+}
+
+// ── LOAD ──────────────────────────────────────────────────────────────────────
+async function loadConvos(){
+  try{
+    const list=await fetch('/api/conversations').then(r=>r.json());
+    list.forEach(c=>{ convos[c.phone]=convos[c.phone]||{messages:[]}; Object.assign(convos[c.phone],c); });
     renderChatList();
-    renderMessages(c.messages);
-  } catch(e) { console.warn('Could not load messages', e); }
+  }catch(e){ console.warn(e); }
 }
 
 // ── CHAT LIST ─────────────────────────────────────────────────────────────────
-function renderChatList(filter='') {
-  const el = document.getElementById('chat-list');
-  let list = Object.values(convos);
-  if (tabFilter === 'open')     list = list.filter(c=>c.status==='open');
-  if (tabFilter === 'resolved') list = list.filter(c=>c.status==='resolved');
-  if (filter) list = list.filter(c=>(c.name+c.phone).toLowerCase().includes(filter.toLowerCase()));
-  list.sort((a,b)=>(b.messages[b.messages.length-1]?.t||'').localeCompare(a.messages[a.messages.length-1]?.t||''));
+function renderChatList(filter=''){
+  const el=document.getElementById('chat-list');
+  let list=Object.values(convos);
+  if(tabFilter==='open')     list=list.filter(c=>c.status==='open');
+  if(tabFilter==='resolved') list=list.filter(c=>c.status==='resolved');
+  if(filter) list=list.filter(c=>(c.name+c.phone).toLowerCase().includes(filter.toLowerCase()));
 
-  if (!list.length) {
-    el.innerHTML = `<div class="empty" style="padding:40px 0"><i class="ti ti-message-off"></i><p>No conversations</p></div>`;
-    return;
-  }
-  el.innerHTML = '';
-  list.forEach(c => {
-    const [bg,tx] = colorFor(c.phone);
-    const last = c.messages[c.messages.length-1];
-    const d = document.createElement('div');
-    d.className = 'chat-item' + (c.phone===activePhone?' active':'');
-    d.onclick = () => openChat(c.phone);
-    d.innerHTML = `
-      <div class="ci-av" style="background:${bg};color:${tx}">${ini(c.name)}</div>
-      <div class="ci-body">
-        <div class="ci-top"><span class="ci-name">${c.name}</span><span class="ci-time">${last?.t||''}</span></div>
-        <div class="ci-msg"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${last?.text||''}</span>${c.unread?`<span class="ci-badge">${c.unread}</span>`:''}</div>
-      </div>`;
+  if(!list.length){ el.innerHTML=`<div class="empty" style="padding:40px 0"><i class="ti ti-message-off"></i><p>No conversations</p></div>`; return; }
+  el.innerHTML='';
+  list.forEach(c=>{
+    const [bg,tx]=colorFor(c.phone);
+    const last=c.messages[c.messages.length-1];
+    const d=document.createElement('div');
+    d.className='chat-item'+(c.phone===activePhone?' active':'');
+    d.onclick=()=>openChat(c.phone);
+    d.innerHTML=`<div class="ci-av" style="background:${bg};color:${tx}">${ini(c.name)}</div>
+    <div class="ci-body">
+      <div class="ci-top"><span class="ci-name">${c.name}</span><span class="ci-time">${last?.t||''}</span></div>
+      <div class="ci-msg"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${last?.text||''}</span>${c.unread?`<span class="ci-badge">${c.unread}</span>`:''}</div>
+    </div>`;
     el.appendChild(d);
   });
-  updateAnalytics();
-  updateContactsPage();
+  updateAnalytics(); updateContactsPage();
 }
 
-function filterConvos(v) { renderChatList(v); }
-function setTab(el, tab) {
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active'); tabFilter = tab; renderChatList();
-}
+function setTab(el,tab){ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); tabFilter=tab; renderChatList(); }
 
 // ── OPEN CHAT ─────────────────────────────────────────────────────────────────
-async function openChat(phone) {
-  activePhone = phone;
-  document.getElementById('chat-placeholder').style.display = 'none';
-  document.getElementById('chat-panel').style.display = 'flex';
-  updateChatHead();
-  renderChatList();
-  if (!convos[phone].messages.length) {
-    await loadConvoMessages(phone);
-  } else {
-    renderMessages(convos[phone].messages);
-    convos[phone].unread = 0;
-    renderChatList();
+async function openChat(phone){
+  activePhone=phone;
+  document.getElementById('chat-placeholder').style.display='none';
+  document.getElementById('chat-panel').style.display='flex';
+  updateChatHead(); renderChatList();
+
+  // Load messages if not already loaded
+  if(!convos[phone].messages?.length){
+    try{
+      const c=await fetch(`/api/conversations/${phone}`).then(r=>r.json());
+      convos[phone]=c;
+    }catch(e){}
   }
+  renderMessages(convos[phone].messages||[]);
+
+  // Mark as read — only NOW that agent opened it
+  await markRead(phone);
+  convos[phone].unread=0;
+  renderChatList();
 }
 
-function updateChatHead() {
-  if (!activePhone) return;
-  const c = convos[activePhone];
-  const [bg,tx] = colorFor(activePhone);
-  document.getElementById('ch-av').style.background = bg;
-  document.getElementById('ch-av').style.color = tx;
-  document.getElementById('ch-av').textContent = ini(c.name);
-  document.getElementById('ch-name').textContent = c.name;
-  document.getElementById('ch-sub').innerHTML = `${activePhone} · <span style="color:${c.status==='open'?'#22c55e':'#94a3b8'}">●</span> ${c.status==='open'?'Open':'Resolved'}`;
-  document.getElementById('agent-sel').value = c.agent || '';
-  document.getElementById('label-sel').value = c.label || '';
-  document.getElementById('resolve-btn').style.color = c.status==='resolved'?'#dc2626':'#16a34a';
-  document.getElementById('resolve-btn').style.borderColor = c.status==='resolved'?'#fca5a5':'#bbf7d0';
-  document.getElementById('resolve-btn').title = c.status==='open'?'Resolve':'Reopen';
+function updateChatHead(){
+  if(!activePhone)return;
+  const c=convos[activePhone]; const [bg,tx]=colorFor(activePhone);
+  document.getElementById('ch-av').style.background=bg;
+  document.getElementById('ch-av').style.color=tx;
+  document.getElementById('ch-av').textContent=ini(c.name);
+  document.getElementById('ch-name').textContent=c.name;
+  document.getElementById('ch-sub').innerHTML=`${activePhone} · <span style="color:${c.status==='open'?'#22c55e':'#94a3b8'}">●</span> ${c.status==='open'?'Open':'Resolved'}`;
+  document.getElementById('agent-sel').value=c.agent||'';
+  document.getElementById('label-sel').value=c.label||'';
+  const rb=document.getElementById('resolve-btn');
+  rb.style.color=c.status==='resolved'?'#dc2626':'#16a34a';
+  rb.style.borderColor=c.status==='resolved'?'#fca5a5':'#bbf7d0';
+  rb.title=c.status==='open'?'Resolve':'Reopen';
 }
 
 // ── MESSAGES ──────────────────────────────────────────────────────────────────
-function renderMessages(msgs) {
-  const b = document.getElementById('chat-body');
-  b.innerHTML = '';
-  const sep = document.createElement('div'); sep.className='day-sep'; sep.textContent='Today'; b.appendChild(sep);
-  msgs.forEach(m => appendMsg(m, false));
-  b.scrollTop = b.scrollHeight;
+function renderMessages(msgs){
+  const b=document.getElementById('chat-body'); b.innerHTML='';
+  const sep=document.createElement('div'); sep.className='day-sep'; sep.textContent='Today'; b.appendChild(sep);
+  msgs.forEach(m=>appendMsg(m,false));
+  b.scrollTop=b.scrollHeight;
 }
 
-function appendMsg(m, scroll=true) {
-  const b = document.getElementById('chat-body');
-  const w = document.createElement('div'); w.className=`msg ${m.dir}`;
-  w.innerHTML = `<div class="msg-bubble">${m.text}</div><div class="msg-time">${m.t}</div>`;
+function appendMsg(m, scroll=true){
+  const b=document.getElementById('chat-body');
+  const w=document.createElement('div'); w.className=`msg ${m.dir}`;
+  if(m.id) w.setAttribute('data-msg-id', m.id);
+  const metaHtml = m.dir==='out'
+    ? `<div class="msg-meta"><span class="msg-time">${m.t}</span>${tickIcon(m.status||'sent')}</div>`
+    : `<div class="msg-meta"><span class="msg-time">${m.t}</span></div>`;
+  w.innerHTML=`<div class="msg-bubble">${m.text}</div>${metaHtml}`;
   b.appendChild(w);
-  if (scroll) b.scrollTop = b.scrollHeight;
+  if(scroll) b.scrollTop=b.scrollHeight;
 }
 
 // ── SEND ──────────────────────────────────────────────────────────────────────
-async function sendMsg() {
-  if (!activePhone) return toast('Select a conversation first');
-  const inp = document.getElementById('chat-input');
-  const text = inp.value.trim(); if (!text) return;
-  inp.value = '';
+async function sendMsg(){
+  if(!activePhone) return toast('Select a conversation first');
+  const inp=document.getElementById('chat-input');
+  const text=inp.value.trim(); if(!text)return;
+  inp.value='';
+
+  // Generate a client ID to track this message and prevent SSE echo duplicate
+  const clientMsgId = 'c_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+  pendingMsgIds.add(clientMsgId);
 
   // Optimistic UI
-  const c = convos[activePhone];
-  const msg = { dir:'out', text, t: new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) };
-  c.messages.push(msg); appendMsg(msg); renderChatList();
+  const msg={dir:'out',text,t:new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),status:'sent',clientMsgId};
+  const c=convos[activePhone]; c.messages.push(msg); appendMsg(msg); renderChatList();
 
-  try {
-    const r = await fetch('/api/send-message', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ to: activePhone, message: text })
+  try{
+    const r=await fetch('/api/send-message',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({to:activePhone,message:text,clientMsgId})
     }).then(r=>r.json());
-    if (!r.success) toast('❌ Send failed: ' + JSON.stringify(r.error));
-  } catch(e) { toast('❌ Network error'); }
+    if(!r.success){ toast('❌ Send failed: '+JSON.stringify(r.error)); pendingMsgIds.delete(clientMsgId); }
+    else if(r.msgId){
+      // Update local message with real WA message ID
+      msg.id=r.msgId;
+      const el=document.querySelector(`[data-msg-id="${r.msgId}"]`);
+      // might not be set yet, will update when status_update arrives
+    }
+  }catch(e){ toast('❌ Network error'); pendingMsgIds.delete(clientMsgId); }
 }
 
-function handleKey(e) { if (e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendMsg(); } }
+function handleKey(e){ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();} }
 
-// ── PATCH CONVO (agent/label/status) ─────────────────────────────────────────
-async function patchConvo(field, value) {
-  if (!activePhone) return;
-  convos[activePhone][field] = value;
-  try {
-    await fetch(`/api/conversations/${activePhone}`, {
-      method:'PATCH', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ [field]: value })
-    });
-  } catch(e) {}
+// ── PATCH ─────────────────────────────────────────────────────────────────────
+async function patchConvo(field,value){
+  if(!activePhone)return;
+  convos[activePhone][field]=value;
+  try{ await fetch(`/api/conversations/${activePhone}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({[field]:value})}); }catch(e){}
   updateChatHead(); renderChatList();
 }
 
-async function toggleResolve() {
-  if (!activePhone) return;
-  const c = convos[activePhone];
-  const newStatus = c.status==='open'?'resolved':'open';
-  await patchConvo('status', newStatus);
+async function toggleResolve(){
+  if(!activePhone)return;
+  await patchConvo('status', convos[activePhone].status==='open'?'resolved':'open');
 }
 
 // ── TEMPLATES ─────────────────────────────────────────────────────────────────
-async function loadTemplates() {
-  const el = document.getElementById('templates-list');
-  const bc = document.getElementById('bc-template');
-  const pk = document.getElementById('tpl-picker');
-  try {
-    const r = await fetch('/api/templates').then(r=>r.json());
-    if (!r.success) throw new Error(JSON.stringify(r.error));
-    templates = r.data.data || [];
-    // render templates page
-    if (!templates.length) { el.innerHTML='<div style="color:var(--tx3);text-align:center;padding:40px">No templates found in your WABA</div>'; return; }
-    el.innerHTML = templates.map(t=>`
+async function loadTemplates(){
+  const el=document.getElementById('templates-list');
+  const bc=document.getElementById('bc-template');
+  const pk=document.getElementById('tpl-picker');
+  try{
+    const r=await fetch('/api/templates').then(r=>r.json());
+    if(!r.success)throw new Error(JSON.stringify(r.error));
+    templates=r.data.data||[];
+    if(!templates.length){ el.innerHTML='<div style="color:var(--tx3);text-align:center;padding:40px">No templates in your WABA yet. Create one above!</div>'; return; }
+    el.innerHTML=templates.map(t=>`
       <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:18px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
           <div>
@@ -529,131 +621,187 @@ async function loadTemplates() {
           <span style="font-size:12px;color:var(--tx2)">${t.category} · ${t.language}</span>
         </div>
         <div style="background:#f0f2f5;border-radius:8px;padding:12px;font-size:13px;line-height:1.6;max-width:340px">
-          ${(t.components||[]).map(c=>`<div>${c.text||''}</div>`).join('')}
+          ${(t.components||[]).filter(c=>c.type!=='BUTTONS').map(c=>`<div>${c.text||''}</div>`).join('')}
+          ${(t.components||[]).filter(c=>c.type==='BUTTONS').map(c=>`<div style="border-top:0.5px solid #e2e8f0;margin-top:8px;padding-top:8px">${(c.buttons||[]).map(b=>`<div style="color:#128C7E;font-weight:600;font-size:13px">${b.text}</div>`).join('')}</div>`).join('')}
         </div>
       </div>`).join('');
-    // populate dropdowns
-    const opts = templates.filter(t=>t.status==='APPROVED').map(t=>`<option value="${t.name}">${t.name}</option>`).join('');
-    bc.innerHTML = '<option value="">Select template…</option>' + opts;
-    pk.innerHTML = '<option value="">Use template…</option>' + opts;
-  } catch(e) {
-    el.innerHTML = `<div style="color:#dc2626;padding:20px;font-size:13px">Error loading templates: ${e.message}</div>`;
+    const opts=templates.filter(t=>t.status==='APPROVED').map(t=>`<option value="${t.name}">${t.name}</option>`).join('');
+    bc.innerHTML='<option value="">Select template…</option>'+opts;
+    pk.innerHTML='<option value="">Use template…</option>'+opts;
+  }catch(e){
+    el.innerHTML=`<div style="color:#dc2626;padding:20px;font-size:13px">Error: ${e.message}</div>`;
   }
 }
 
-function insertTemplate(name) {
-  if (!name) return;
-  const tpl = templates.find(t=>t.name===name);
-  if (!tpl) return;
-  const body = (tpl.components||[]).find(c=>c.type==='BODY');
-  if (body) document.getElementById('chat-input').value = body.text || '';
-  document.getElementById('tpl-picker').value = '';
+function insertTemplate(name){
+  if(!name)return;
+  const tpl=templates.find(t=>t.name===name);
+  if(!tpl)return;
+  const body=(tpl.components||[]).find(c=>c.type==='BODY');
+  if(body) document.getElementById('chat-input').value=body.text||'';
+  document.getElementById('tpl-picker').value='';
+}
+
+// ── TEMPLATE BUILDER ──────────────────────────────────────────────────────────
+function toggleTplBuilder(){
+  const el=document.getElementById('tpl-builder');
+  el.style.display=el.style.display==='none'?'block':'none';
+}
+
+let btnCount=0;
+function addButton(){
+  const c=document.getElementById('tn-buttons');
+  const d=document.querySelectorAll('#tn-buttons .btn-row-item').length;
+  if(d>=3)return toast('Maximum 3 buttons allowed');
+  const id='btn_'+btnCount++;
+  const row=document.createElement('div'); row.className='btn-row-item'; row.style.cssText='display:flex;gap:8px;align-items:center;margin-bottom:6px';
+  row.innerHTML=`<input class="form-input" placeholder="Button text" style="flex:1" oninput="updatePreview()"/>
+    <button class="btn-remove" onclick="this.parentNode.remove();updatePreview()">×</button>`;
+  c.appendChild(row); updatePreview();
+}
+
+function updatePreview(){
+  const header=document.getElementById('tn-header').value;
+  const body=document.getElementById('tn-body').value;
+  const footer=document.getElementById('tn-footer').value;
+  const btns=[...document.querySelectorAll('#tn-buttons input')].map(i=>i.value).filter(Boolean);
+
+  const ph=document.getElementById('prev-header');
+  const pb=document.getElementById('prev-body');
+  const pf=document.getElementById('prev-footer');
+  const pbtns=document.getElementById('prev-btns');
+
+  ph.style.display=header?'block':'none'; ph.textContent=header;
+  pb.style.color=body?'#0f172a':'#94a3b8'; pb.textContent=body||'Your message will appear here…';
+  pf.style.display=footer?'block':'none'; pf.textContent=footer;
+  pbtns.style.display=btns.length?'flex':'none';
+  pbtns.innerHTML=btns.map(b=>`<div class="tpl-btn">${b}</div>`).join('');
+}
+
+async function submitTemplate(){
+  const name=document.getElementById('tn-name').value.trim().replace(/\s/g,'_').toLowerCase();
+  const body=document.getElementById('tn-body').value.trim();
+  const header=document.getElementById('tn-header').value.trim();
+  const footer=document.getElementById('tn-footer').value.trim();
+  const category=document.getElementById('tn-category').value;
+  const language=document.getElementById('tn-language').value;
+  const buttons=[...document.querySelectorAll('#tn-buttons input')].map(i=>i.value.trim()).filter(Boolean).map(t=>({type:'QUICK_REPLY',text:t}));
+  const st=document.getElementById('tn-status');
+  const btn=document.getElementById('tn-submit-btn');
+
+  if(!name)return toast('Enter a template name');
+  if(!body)return toast('Body is required');
+
+  btn.disabled=true; st.textContent='Submitting…';
+  try{
+    const r=await fetch('/api/templates',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name,category,language,body,header,footer,buttons})
+    }).then(r=>r.json());
+    if(r.success){
+      st.textContent='✅ Submitted! Awaiting Meta approval.';
+      toast('Template submitted for approval!');
+      setTimeout(()=>{ toggleTplBuilder(); loadTemplates(); },2000);
+    } else {
+      st.textContent='❌ '+JSON.stringify(r.error?.error?.message||r.error);
+    }
+  }catch(e){ st.textContent='❌ Network error'; }
+  btn.disabled=false;
 }
 
 // ── BROADCAST ─────────────────────────────────────────────────────────────────
-function toggleBcast() {
-  const f=document.getElementById('bcast-form');
-  f.style.display=f.style.display==='none'?'block':'none';
-}
+function toggleBcast(){ const f=document.getElementById('bcast-form'); f.style.display=f.style.display==='none'?'block':'none'; }
 
-async function sendBroadcast() {
-  const tpl = document.getElementById('bc-template').value;
-  const nums = document.getElementById('bc-recipients').value.trim().split('\n').map(s=>s.trim()).filter(Boolean);
-  const btn = document.getElementById('bc-btn');
-  const status = document.getElementById('bc-status');
-  if (!tpl) return toast('Select a template first');
-  if (!nums.length) return toast('Enter at least one number');
-
-  btn.disabled = true; status.textContent = `Sending to ${nums.length} recipients…`;
-  let sent=0, failed=0;
-  for (const to of nums) {
-    try {
-      const r = await fetch('/api/send-template',{
-        method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({to,template_name:tpl})
-      }).then(r=>r.json());
-      r.success ? sent++ : failed++;
-    } catch { failed++; }
+async function sendBroadcast(){
+  const tpl=document.getElementById('bc-template').value;
+  const nums=document.getElementById('bc-recipients').value.trim().split('\n').map(s=>s.trim()).filter(Boolean);
+  const btn=document.getElementById('bc-btn'); const st=document.getElementById('bc-status');
+  if(!tpl)return toast('Select a template');
+  if(!nums.length)return toast('Enter at least one number');
+  btn.disabled=true; st.textContent=`Sending to ${nums.length}…`;
+  let sent=0,failed=0;
+  for(const to of nums){
+    try{
+      const r=await fetch('/api/send-template',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to,template_name:tpl})}).then(r=>r.json());
+      r.success?sent++:failed++;
+    }catch{failed++;}
   }
-  btn.disabled = false;
-  status.textContent = `✅ Sent: ${sent}  ❌ Failed: ${failed}`;
+  btn.disabled=false; st.textContent=`✅ Sent: ${sent}  ❌ Failed: ${failed}`;
   toast(`Broadcast done — ${sent} sent, ${failed} failed`);
 }
 
 // ── ANALYTICS ─────────────────────────────────────────────────────────────────
-function updateAnalytics() {
-  const list = Object.values(convos);
-  document.getElementById('an-total').textContent    = list.length;
-  document.getElementById('an-open').textContent     = list.filter(c=>c.status==='open').length;
-  document.getElementById('an-resolved').textContent = list.filter(c=>c.status==='resolved').length;
-  document.getElementById('an-msgs').textContent     = list.reduce((s,c)=>s+c.messages.length,0);
-  const tb = document.getElementById('analytics-table');
-  if (!list.length) { tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--tx3);padding:20px">No data yet</td></tr>'; return; }
-  tb.innerHTML = list.map(c=>`<tr>
+function updateAnalytics(){
+  const list=Object.values(convos);
+  document.getElementById('an-total').textContent=list.length;
+  document.getElementById('an-open').textContent=list.filter(c=>c.status==='open').length;
+  document.getElementById('an-resolved').textContent=list.filter(c=>c.status==='resolved').length;
+  document.getElementById('an-msgs').textContent=list.reduce((s,c)=>s+(c.messages?.length||0),0);
+  const tb=document.getElementById('analytics-table');
+  if(!list.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--tx3);padding:24px">No data yet</td></tr>';return;}
+  tb.innerHTML=list.map(c=>`<tr>
     <td><b style="font-weight:600">${c.name}</b></td>
     <td style="color:var(--tx2)">${c.phone}</td>
-    <td>${c.messages.length}</td>
+    <td>${c.messages?.length||0}</td>
     <td><span class="badge ${c.status==='open'?'bg-blue':'bg-green'}">${c.status}</span></td>
     <td>${c.label?`<span class="badge bg-amber">${c.label}</span>`:''}</td>
     <td>${c.agent||''}</td>
   </tr>`).join('');
 }
 
-// ── CONTACTS PAGE ─────────────────────────────────────────────────────────────
-function updateContactsPage() {
-  const list = Object.values(convos);
-  document.getElementById('contacts-count').textContent = `${list.length} contacts`;
-  const tb = document.getElementById('contacts-table');
-  if (!list.length) { tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--tx3);padding:20px">No contacts yet</td></tr>'; return; }
-  tb.innerHTML = list.map(c=>`<tr>
+// ── CONTACTS ──────────────────────────────────────────────────────────────────
+function updateContactsPage(){
+  const list=Object.values(convos);
+  document.getElementById('contacts-count').textContent=`${list.length} contacts`;
+  const tb=document.getElementById('contacts-table');
+  if(!list.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--tx3);padding:24px">No contacts yet</td></tr>';return;}
+  tb.innerHTML=list.map(c=>`<tr>
     <td><b style="font-weight:600">${c.name}</b></td>
     <td style="color:var(--tx2)">${c.phone}</td>
     <td>${c.label?`<span class="badge bg-amber">${c.label}</span>`:''}</td>
-    <td style="color:var(--tx2)">${c.messages[c.messages.length-1]?.text||''}</td>
+    <td style="color:var(--tx2);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${c.messages?.[c.messages.length-1]?.text||''}</td>
     <td><span class="badge ${c.status==='open'?'bg-blue':'bg-green'}">${c.status}</span></td>
   </tr>`).join('');
 }
 
-// ── SETTINGS / HEALTH ─────────────────────────────────────────────────────────
-async function loadHealth() {
-  try {
-    const h = await fetch('/api/health').then(r=>r.json());
-    document.getElementById('health-status').innerHTML = Object.entries(h).map(([k,v])=>
-      `<div style="margin-bottom:6px"><span style="font-family:monospace;font-size:12px;background:var(--bg2);padding:2px 8px;border-radius:4px">${k}</span>  ${v}</div>`
+// ── SETTINGS ──────────────────────────────────────────────────────────────────
+async function loadHealth(){
+  try{
+    const h=await fetch('/api/health').then(r=>r.json());
+    document.getElementById('health-status').innerHTML=Object.entries(h).map(([k,v])=>
+      `<div style="margin-bottom:6px"><code style="background:var(--bg2);padding:2px 8px;border-radius:4px;font-size:12px">${k}</code>  ${v}</div>`
     ).join('');
-  } catch(e) { document.getElementById('health-status').textContent='Cannot reach server'; }
+  }catch(e){document.getElementById('health-status').textContent='Cannot reach server';}
 }
 
-async function sendTestMsg() {
-  const to  = document.getElementById('test-to').value.trim();
-  const msg = document.getElementById('test-msg').value.trim();
-  const st  = document.getElementById('test-status');
-  if (!to||!msg) return toast('Fill in both fields');
+async function sendTestMsg(){
+  const to=document.getElementById('test-to').value.trim();
+  const msg=document.getElementById('test-msg').value.trim();
+  const st=document.getElementById('test-status');
+  if(!to||!msg)return toast('Fill in both fields');
   st.textContent='Sending…';
-  try {
-    const r = await fetch('/api/send-message',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to,message:msg})}).then(r=>r.json());
-    st.textContent = r.success ? '✅ Sent!' : '❌ '+JSON.stringify(r.error);
-  } catch(e) { st.textContent='❌ Network error'; }
+  try{
+    const r=await fetch('/api/send-message',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to,message:msg})}).then(r=>r.json());
+    st.textContent=r.success?'✅ Sent!':'❌ '+JSON.stringify(r.error);
+  }catch(e){st.textContent='❌ Network error';}
 }
 
 // ── NAV ───────────────────────────────────────────────────────────────────────
-const VIEWS = ['inbox','contacts','broadcast','templates','analytics','settings'];
-function nav(page) {
-  VIEWS.forEach(v=>{ const el=document.getElementById('v-'+v); if(el)el.classList.remove('active'); });
-  const el=document.getElementById('v-'+page); if(el)el.classList.add('active');
+const VIEWS=['inbox','contacts','broadcast','templates','analytics','settings'];
+function nav(page){
+  VIEWS.forEach(v=>{const el=document.getElementById('v-'+v);if(el)el.classList.remove('active');});
+  document.getElementById('v-'+page)?.classList.add('active');
   document.querySelectorAll('.s-btn').forEach(b=>b.classList.remove('active'));
   const map={inbox:0,contacts:1,broadcast:2,templates:3,analytics:4,settings:5};
   document.querySelectorAll('.s-btn')[map[page]]?.classList.add('active');
   if(page==='templates')loadTemplates();
-  if(page==='analytics')updateAnalytics();
-  if(page==='contacts')updateContactsPage();
   if(page==='settings')loadHealth();
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 connectSSE();
 loadConvos();
-loadTemplates(); // pre-load for picker
+loadTemplates();
 </script>
 </body>
 </html>
