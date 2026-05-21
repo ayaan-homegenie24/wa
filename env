@@ -8,21 +8,21 @@
 #    Source: https://developers.facebook.com/apps/
 #    → Your App → Settings → Basic
 # ----------------------------------------------------------
-APP_ID=<<<REPLACE_THIS_APP_ID>>>
-APP_SECRET=<<<REPLACE_THIS_APP_SECRET>>>
+APP_ID=1644712490061342
+APP_SECRET=97a80dd6ebfbfbeb9d67c02605a65033
 
 # ----------------------------------------------------------
 # 2. WHATSAPP BUSINESS ACCOUNT (WABA)
 #    Source: Meta Business Manager → WhatsApp Accounts
 # ----------------------------------------------------------
-WABA_ID=<<<REPLACE_THIS_WABA_ID>>>
+WABA_ID=1329394315686077
 
 # ----------------------------------------------------------
 # 3. PHONE NUMBER ID
 #    Source: Meta Developers → Your App → WhatsApp → API Setup
 #    (Labelled "Phone number ID" — NOT the actual phone number)
 # ----------------------------------------------------------
-PHONE_NUMBER_ID=<<<REPLACE_THIS_PHONE_NUMBER_ID>>>
+PHONE_NUMBER_ID=1086781974512221
 
 # ----------------------------------------------------------
 # 4. PERMANENT ACCESS TOKEN
@@ -36,13 +36,13 @@ ACCESS_TOKEN=<<<REPLACE_THIS_PERMANENT_ACCESS_TOKEN>>>
 #    This is a string YOU invent — can be anything, e.g. "my_secret_123"
 #    Must match exactly what you enter in the Meta webhook config screen
 # ----------------------------------------------------------
-WEBHOOK_VERIFY_TOKEN=<<<REPLACE_THIS_WEBHOOK_VERIFY_TOKEN>>>
+WEBHOOK_VERIFY_TOKEN=EAAXX23e6Th4BRNb7YitkHSA2yu5mtAPYIZCC76kX9T3DHZCRGUHGrNGRXRHhFfZCwHc4xnVsGeXhMrAlWite6vGZCoMAWQp85ZAw2Xxwg3UNqY4NNvobyHgiBfnoZBIZCz5vAGHIFoLUcilZBfN5koWBZBRi3YRDZAbiL6k2VoVyjM5GlpZAft74fYX76DAbQlsnAZDZD
 
 # ----------------------------------------------------------
 # 6. API VERSION
 #    Keep up-to-date: https://developers.facebook.com/docs/graph-api/changelog
 # ----------------------------------------------------------
-GRAPH_API_VERSION=v19.0
+GRAPH_API_VERSION=v25.0
 
 # ----------------------------------------------------------
 # 7. SERVER CONFIG
