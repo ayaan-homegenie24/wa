@@ -1,12 +1,3 @@
-/**
- * META WHATSAPP CLOUD API — BACKEND SERVER
- * =========================================
- * Node.js + Express
- * Replace IDs in .env before running.
- *
- * Start: npm install && node server.js
- */
-
 require("dotenv").config();
 const express = require("express");
 const axios   = require("axios");
@@ -15,250 +6,265 @@ const app     = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../frontend")));
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/index.html"));
-});
 
-// ----------------------------------------------------------
-// CONFIG — loaded from .env (no hardcoded credentials here)
-// ----------------------------------------------------------
 const {
-  PHONE_NUMBER_ID,      // <<<  from .env
-  ACCESS_TOKEN,         // <<<  from .env
-  WEBHOOK_VERIFY_TOKEN, // <<<  from .env
-  GRAPH_API_VERSION,    // <<<  from .env
-  WABA_ID,              // <<<  from .env
-  PORT,
+  PHONE_NUMBER_ID,
+  ACCESS_TOKEN,
+  WEBHOOK_VERIFY_TOKEN,
+  GRAPH_API_VERSION = "v19.0",
+  WABA_ID,
+  PORT = 3000,
 } = process.env;
 
 const BASE_URL = `https://graph.facebook.com/${GRAPH_API_VERSION}`;
 
-// ----------------------------------------------------------
-// HEALTH CHECK
-// ----------------------------------------------------------
+// ─── IN-MEMORY STORE ────────────────────────────────────────────────────────
+// Key = phone number (e.g. "919876543210")
+// Value = { name, phone, messages: [{dir,text,type,t,id}], unread, agent, label, status }
+const conversations = {};
+
+function getOrCreate(phone, name) {
+  if (!conversations[phone]) {
+    conversations[phone] = {
+      name: name || phone,
+      phone,
+      messages: [],
+      unread: 0,
+      agent: "",
+      label: "",
+      status: "open",
+    };
+  }
+  return conversations[phone];
+}
+
+// ─── SSE — real-time push to browser ────────────────────────────────────────
+const sseClients = new Set();
+
+function broadcast(event, data) {
+  const payload = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
+  sseClients.forEach((res) => res.write(payload));
+}
+
+app.get("/events", (req, res) => {
+  res.set({
+    "Content-Type":  "text/event-stream",
+    "Cache-Control": "no-cache",
+    Connection:      "keep-alive",
+  });
+  res.flushHeaders();
+  sseClients.add(res);
+  // heartbeat every 20 s so the connection stays alive
+  const hb = setInterval(() => res.write(": heartbeat\n\n"), 20000);
+  req.on("close", () => { clearInterval(hb); sseClients.delete(res); });
+});
+
+// ─── HEALTH ──────────────────────────────────────────────────────────────────
 app.get("/api/health", (req, res) => {
   res.json({
     phone_number_id: PHONE_NUMBER_ID ? "✅ set" : "❌ MISSING",
-    access_token: ACCESS_TOKEN ? "✅ set" : "❌ MISSING",
-    webhook_token: WEBHOOK_VERIFY_TOKEN ? "✅ set" : "❌ MISSING",
+    access_token:    ACCESS_TOKEN    ? "✅ set" : "❌ MISSING",
+    webhook_token:   WEBHOOK_VERIFY_TOKEN ? "✅ set" : "❌ MISSING",
   });
 });
 
-// ----------------------------------------------------------
-// SEND A TEXT MESSAGE
-//
-// POST /send-message
-// Body: { to: "91XXXXXXXXXX", message: "Hello!" }
-// ----------------------------------------------------------
-app.post("/send-message", async (req, res) => {
+// ─── LIST CONVERSATIONS ───────────────────────────────────────────────────────
+app.get("/api/conversations", (req, res) => {
+  const list = Object.values(conversations).map((c) => ({
+    phone:   c.phone,
+    name:    c.name,
+    lastMsg: c.messages[c.messages.length - 1]?.text || "",
+    lastT:   c.messages[c.messages.length - 1]?.t    || "",
+    unread:  c.unread,
+    agent:   c.agent,
+    label:   c.label,
+    status:  c.status,
+  }));
+  res.json(list);
+});
+
+// ─── GET MESSAGES FOR ONE CONVERSATION ────────────────────────────────────────
+app.get("/api/conversations/:phone", (req, res) => {
+  const c = conversations[req.params.phone];
+  if (!c) return res.status(404).json({ error: "Not found" });
+  // mark as read
+  c.unread = 0;
+  res.json(c);
+});
+
+// ─── ASSIGN AGENT / LABEL / STATUS ────────────────────────────────────────────
+app.patch("/api/conversations/:phone", (req, res) => {
+  const c = getOrCreate(req.params.phone);
+  const { agent, label, status } = req.body;
+  if (agent  !== undefined) c.agent  = agent;
+  if (label  !== undefined) c.label  = label;
+  if (status !== undefined) c.status = status;
+  broadcast("conversation_updated", { phone: c.phone, agent: c.agent, label: c.label, status: c.status });
+  res.json({ ok: true });
+});
+
+// ─── SEND TEXT ────────────────────────────────────────────────────────────────
+app.post("/api/send-message", async (req, res) => {
   const { to, message } = req.body;
-
-  if (!to || !message) {
-    return res.status(400).json({ error: "to and message are required" });
-  }
+  if (!to || !message) return res.status(400).json({ error: "to and message are required" });
 
   try {
-    const response = await axios.post(
-      `${BASE_URL}/${PHONE_NUMBER_ID}/messages`, // PHONE_NUMBER_ID from .env
-      {
-        messaging_product: "whatsapp",
-        recipient_type: "individual",
-        to,
-        type: "text",
-        text: { preview_url: false, body: message },
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`, // ACCESS_TOKEN from .env
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    res.json({ success: true, data: response.data });
-  } catch (err) {
-    res.status(500).json({ error: err.response?.data || err.message });
-  }
-});
-
-// ----------------------------------------------------------
-// SEND A TEMPLATE MESSAGE
-//
-// POST /send-template
-// Body: { to: "91XXXXXXXXXX", template_name: "hello_world", language: "en_US" }
-//
-// Create templates in:
-// Meta Business Manager → WhatsApp → Message Templates
-// ----------------------------------------------------------
-app.post("/send-template", async (req, res) => {
-  const { to, template_name, language = "en_US", components = [] } = req.body;
-
-  try {
-    const response = await axios.post(
+    const r = await axios.post(
       `${BASE_URL}/${PHONE_NUMBER_ID}/messages`,
-      {
-        messaging_product: "whatsapp",
-        to,
-        type: "template",
-        template: {
-          name: template_name,
-          language: { code: language },
-          components,
-        },
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      }
+      { messaging_product: "whatsapp", recipient_type: "individual", to, type: "text", text: { preview_url: false, body: message } },
+      { headers: { Authorization: `Bearer ${ACCESS_TOKEN}`, "Content-Type": "application/json" } }
     );
-
-    res.json({ success: true, data: response.data });
+    const c = getOrCreate(to);
+    const msg = { dir: "out", type: "text", text: message, t: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), id: r.data.messages?.[0]?.id };
+    c.messages.push(msg);
+    broadcast("new_message", { phone: to, message: msg, meta: { name: c.name, unread: 0 } });
+    res.json({ success: true, data: r.data });
   } catch (err) {
     res.status(500).json({ error: err.response?.data || err.message });
   }
 });
 
-// ----------------------------------------------------------
-// SEND MEDIA (image, document, audio, video)
-//
-// POST /send-media
-// Body: { to, type: "image", link: "https://...", caption: "..." }
-// ----------------------------------------------------------
-app.post("/send-media", async (req, res) => {
-  const { to, type, link, caption } = req.body;
+// ─── SEND TEMPLATE ────────────────────────────────────────────────────────────
+app.post("/api/send-template", async (req, res) => {
+  const { to, template_name, language = "en_US", components = [] } = req.body;
+  try {
+    const r = await axios.post(
+      `${BASE_URL}/${PHONE_NUMBER_ID}/messages`,
+      { messaging_product: "whatsapp", to, type: "template", template: { name: template_name, language: { code: language }, components } },
+      { headers: { Authorization: `Bearer ${ACCESS_TOKEN}`, "Content-Type": "application/json" } }
+    );
+    res.json({ success: true, data: r.data });
+  } catch (err) {
+    res.status(500).json({ error: err.response?.data || err.message });
+  }
+});
 
+// ─── SEND MEDIA ───────────────────────────────────────────────────────────────
+app.post("/api/send-media", async (req, res) => {
+  const { to, type, link, caption } = req.body;
   const mediaObject = { link };
   if (caption) mediaObject.caption = caption;
-
   try {
-    const response = await axios.post(
+    const r = await axios.post(
       `${BASE_URL}/${PHONE_NUMBER_ID}/messages`,
-      {
-        messaging_product: "whatsapp",
-        to,
-        type,
-        [type]: mediaObject,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      }
+      { messaging_product: "whatsapp", to, type, [type]: mediaObject },
+      { headers: { Authorization: `Bearer ${ACCESS_TOKEN}`, "Content-Type": "application/json" } }
     );
-
-    res.json({ success: true, data: response.data });
+    res.json({ success: true, data: r.data });
   } catch (err) {
     res.status(500).json({ error: err.response?.data || err.message });
   }
 });
 
-// ----------------------------------------------------------
-// MARK MESSAGE AS READ
-//
-// POST /mark-read
-// Body: { message_id: "wamid.XXX" }
-// ----------------------------------------------------------
-app.post("/mark-read", async (req, res) => {
+// ─── LIST TEMPLATES ───────────────────────────────────────────────────────────
+app.get("/api/templates", async (req, res) => {
+  try {
+    const r = await axios.get(`${BASE_URL}/${WABA_ID}/message_templates`, {
+      headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
+    });
+    res.json({ success: true, data: r.data });
+  } catch (err) {
+    res.status(500).json({ error: err.response?.data || err.message });
+  }
+});
+
+// ─── MARK READ ────────────────────────────────────────────────────────────────
+app.post("/api/mark-read", async (req, res) => {
   const { message_id } = req.body;
-
   try {
-    const response = await axios.post(
+    const r = await axios.post(
       `${BASE_URL}/${PHONE_NUMBER_ID}/messages`,
-      {
-        messaging_product: "whatsapp",
-        status: "read",
-        message_id,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      }
+      { messaging_product: "whatsapp", status: "read", message_id },
+      { headers: { Authorization: `Bearer ${ACCESS_TOKEN}`, "Content-Type": "application/json" } }
     );
-
-    res.json({ success: true, data: response.data });
+    res.json({ success: true, data: r.data });
   } catch (err) {
     res.status(500).json({ error: err.response?.data || err.message });
   }
 });
 
-// ----------------------------------------------------------
-// GET TEMPLATES (list all message templates for your WABA)
-// GET /templates
-// ----------------------------------------------------------
-app.get("/templates", async (req, res) => {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/${WABA_ID}/message_templates`, // WABA_ID from .env
-      {
-        headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
-      }
-    );
-
-    res.json({ success: true, data: response.data });
-  } catch (err) {
-    res.status(500).json({ error: err.response?.data || err.message });
-  }
-});
-
-// ----------------------------------------------------------
-// WEBHOOK — VERIFICATION (GET)
-// Meta calls this once when you register your webhook URL
-// ----------------------------------------------------------
+// ─── WEBHOOK VERIFY ───────────────────────────────────────────────────────────
 app.get("/webhook", (req, res) => {
-  const mode = req.query["hub.mode"];
-  const token = req.query["hub.verify_token"];
+  const mode      = req.query["hub.mode"];
+  const token     = req.query["hub.verify_token"];
   const challenge = req.query["hub.challenge"];
-
   if (mode === "subscribe" && token === WEBHOOK_VERIFY_TOKEN) {
     console.log("✅ Webhook verified");
     return res.status(200).send(challenge);
   }
-
-  console.error("❌ Webhook verification failed — token mismatch");
+  console.error("❌ Webhook token mismatch");
   res.sendStatus(403);
 });
 
-// ----------------------------------------------------------
-// WEBHOOK — RECEIVE MESSAGES (POST)
-// Meta sends incoming messages here
-// ----------------------------------------------------------
+// ─── WEBHOOK RECEIVE ──────────────────────────────────────────────────────────
 app.post("/webhook", (req, res) => {
-  const body = req.body;
+  res.sendStatus(200); // always ack Meta immediately
 
-  if (body.object !== "whatsapp_business_account") return res.sendStatus(404);
+  const body = req.body;
+  if (body.object !== "whatsapp_business_account") return;
 
   body.entry?.forEach((entry) => {
     entry.changes?.forEach((change) => {
-      const value = change.value;
+      const value    = change.value;
+      const contacts_map = {};
+      (value.contacts || []).forEach((c) => { contacts_map[c.wa_id] = c.profile?.name || c.wa_id; });
 
-      // Incoming messages
-      value.messages?.forEach((msg) => {
-        console.log("📩 Incoming message:", JSON.stringify(msg, null, 2));
+      // ── Incoming messages ──
+      (value.messages || []).forEach((msg) => {
+        const phone = msg.from;
+        const name  = contacts_map[phone] || phone;
+        const c     = getOrCreate(phone, name);
+        if (!c.name || c.name === phone) c.name = name;
 
-        // TODO: Add your bot logic / DB save / auto-reply here
-        // Example: if (msg.type === "text") autoReply(msg.from, msg.text.body)
+        let text = "";
+        if (msg.type === "text")     text = msg.text?.body || "";
+        else if (msg.type === "image")    text = `[Image] ${msg.image?.caption || ""}`.trim();
+        else if (msg.type === "document") text = `[Document] ${msg.document?.filename || ""}`.trim();
+        else if (msg.type === "audio")    text = "[Audio message]";
+        else if (msg.type === "video")    text = "[Video]";
+        else if (msg.type === "sticker")  text = "[Sticker]";
+        else if (msg.type === "location") text = `[Location] lat:${msg.location?.latitude} lng:${msg.location?.longitude}`;
+        else text = `[${msg.type}]`;
+
+        const msgObj = {
+          dir:  "in",
+          type: msg.type,
+          text,
+          t:    new Date(parseInt(msg.timestamp) * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          id:   msg.id,
+        };
+        c.messages.push(msgObj);
+        c.unread++;
+
+        console.log(`📩 [${name}] ${text}`);
+
+        // Mark as read on Meta
+        axios.post(
+          `${BASE_URL}/${PHONE_NUMBER_ID}/messages`,
+          { messaging_product: "whatsapp", status: "read", message_id: msg.id },
+          { headers: { Authorization: `Bearer ${ACCESS_TOKEN}`, "Content-Type": "application/json" } }
+        ).catch(() => {});
+
+        // Push to all open browser tabs in real time
+        broadcast("new_message", {
+          phone,
+          message: msgObj,
+          meta: { name: c.name, unread: c.unread, status: c.status },
+        });
       });
 
-      // Status updates (sent, delivered, read, failed)
-      value.statuses?.forEach((status) => {
-        console.log("📋 Status update:", status.status, "for", status.id);
+      // ── Status updates ──
+      (value.statuses || []).forEach((s) => {
+        console.log(`📋 Status: ${s.status} for ${s.id}`);
+        broadcast("status_update", { id: s.id, status: s.status, phone: s.recipient_id });
       });
     });
   });
-
-  res.sendStatus(200);
 });
 
-// ----------------------------------------------------------
-// START SERVER
-// ----------------------------------------------------------
-app.listen(PORT || 3000, () => {
-  console.log(`\n🚀 WhatsApp API server running on port ${PORT || 3000}`);
-  console.log(`   Webhook URL: http://YOUR_DOMAIN/webhook`);
-  console.log(`   Health:      http://localhost:${PORT || 3000}/\n`);
+// ─── START ────────────────────────────────────────────────────────────────────
+app.listen(PORT, () => {
+  console.log(`\n🚀  Server running on http://localhost:${PORT}`);
+  console.log(`    Webhook:  http://YOUR_PUBLIC_DOMAIN/webhook`);
+  console.log(`    Health:   http://localhost:${PORT}/api/health\n`);
 });
