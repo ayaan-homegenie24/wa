@@ -7,19 +7,21 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.0/dist/tabler-icons.min.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--wa:#25D366;--wa-dk:#128C7E;--wa-lt:#dcfce7;--bg:#ffffff;--bg2:#f8fafc;--bg3:#f1f5f9;--tx:#0f172a;--tx2:#64748b;--tx3:#94a3b8;--bd:#e2e8f0;--bd2:#cbd5e1}
+:root{--wa:#25D366;--wa-dk:#128C7E;--bg:#fff;--bg2:#f8fafc;--bg3:#f1f5f9;--tx:#0f172a;--tx2:#64748b;--tx3:#94a3b8;--bd:#e2e8f0;--bd2:#cbd5e1}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg3);color:var(--tx);font-size:14px}
 .app{display:flex;height:100vh;background:var(--bg)}
+/* sidebar */
 .sidebar{width:60px;background:#1a2332;display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:4px;flex-shrink:0}
 .s-logo{width:36px;height:36px;background:var(--wa);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
 .s-logo i{color:#fff;font-size:20px}
-.s-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#8899aa;transition:all .15s;border:none;background:none;position:relative}
+.s-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#8899aa;border:none;background:none;position:relative;transition:all .15s}
 .s-btn:hover{background:#243040;color:#cdd9e5}
 .s-btn.active{background:#243040;color:#fff}
 .s-btn.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--wa);border-radius:0 3px 3px 0}
 .s-btn i{font-size:20px}
 .s-sep{width:30px;height:0.5px;background:#2d3f52;margin:6px 0}
 .s-avatar{width:32px;height:32px;border-radius:50%;background:var(--wa-dk);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;margin-top:auto;cursor:pointer}
+/* panel */
 .panel{width:300px;border-right:0.5px solid var(--bd);display:flex;flex-direction:column;flex-shrink:0;background:var(--bg)}
 .panel-head{padding:16px 14px 10px;border-bottom:0.5px solid var(--bd)}
 .panel-head h2{font-size:16px;font-weight:600;margin-bottom:10px}
@@ -35,16 +37,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .chat-item{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background .12s;border-bottom:0.5px solid var(--bd)}
 .chat-item:hover{background:var(--bg2)}
 .chat-item.active{background:#e8f5e9}
-.ci-av{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600}
+.ci-av{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
 .ci-body{flex:1;min-width:0}
 .ci-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px}
 .ci-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ci-time{font-size:11px;color:var(--tx3);flex-shrink:0;margin-left:4px}
-.ci-msg{font-size:12px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-msg{font-size:12px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;justify-content:space-between;align-items:center}
 .ci-badge{min-width:18px;height:18px;border-radius:9px;background:var(--wa);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0 4px;flex-shrink:0}
+/* main */
 .main{flex:1;display:flex;flex-direction:column;min-width:0}
 .chat-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:0.5px solid var(--bd);flex-shrink:0;background:var(--bg)}
-.chat-head-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600}
+.chat-head-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
 .chat-head-info{flex:1}
 .chat-head-name{font-size:14px;font-weight:600}
 .chat-head-sub{font-size:12px;color:var(--tx2)}
@@ -70,10 +73,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .chat-textarea:focus{border-color:var(--wa)}
 .send-btn{width:38px;height:38px;background:var(--wa);border:none;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
 .send-btn i{color:#fff;font-size:18px}
+/* pages */
 .page{flex:1;overflow-y:auto;padding:24px}
 .page-title{font-size:18px;font-weight:600;margin-bottom:4px}
 .page-sub{font-size:13px;color:var(--tx2);margin-bottom:20px}
-.btn-primary{background:var(--wa-dk);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
+.btn-primary{background:var(--wa-dk);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .btn-primary:hover{background:var(--wa)}
 .btn-secondary{background:var(--bg2);color:var(--tx);border:0.5px solid var(--bd2);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .data-table{width:100%;border-collapse:collapse;font-size:13px}
@@ -85,6 +89,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .bg-amber{background:#fef3c7;color:#92400e}
 .bg-gray{background:var(--bg2);color:var(--tx2)}
 .bg-blue{background:#dbeafe;color:#1e40af}
+.bg-red{background:#fee2e2;color:#991b1b}
 .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
 .stat-card{background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:14px 16px}
 .stat-label{font-size:12px;color:var(--tx2);margin-bottom:6px}
@@ -95,7 +100,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .form-input:focus{border-color:var(--wa)}
 .view{display:none}
 .view.active{display:flex;flex:1}
-.chat-view-wrap{display:flex;flex-direction:column;flex:1}
+.chat-wrap{display:flex;flex-direction:column;flex:1}
+/* empty state */
+.empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--tx3);gap:10px}
+.empty i{font-size:48px;opacity:.3}
+.empty p{font-size:14px}
+/* toast */
+.toast{position:fixed;bottom:24px;right:24px;background:#1a2332;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;opacity:0;transition:opacity .3s;z-index:999;pointer-events:none}
+.toast.show{opacity:1}
+/* connection dot */
+.conn-dot{width:8px;height:8px;border-radius:50%;background:#94a3b8;flex-shrink:0}
+.conn-dot.live{background:#22c55e;box-shadow:0 0 6px #22c55e}
 </style>
 </head>
 <body>
@@ -116,44 +131,51 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div id="v-inbox" class="view active">
     <div class="panel">
       <div class="panel-head">
-        <h2>Inbox</h2>
-        <div class="search-box"><i class="ti ti-search"></i><input placeholder="Search conversations…"/></div>
+        <h2 style="display:flex;align-items:center;gap:8px">Inbox <div class="conn-dot" id="conn-dot" title="Not connected"></div></h2>
+        <div class="search-box"><i class="ti ti-search"></i><input placeholder="Search conversations…" oninput="filterConvos(this.value)"/></div>
       </div>
       <div class="tabs">
-        <div class="tab active" onclick="setTab(this)">All</div>
-        <div class="tab" onclick="setTab(this)">Open</div>
-        <div class="tab" onclick="setTab(this)">Mine</div>
-        <div class="tab" onclick="setTab(this)">Bot</div>
+        <div class="tab active" onclick="setTab(this,'all')">All</div>
+        <div class="tab" onclick="setTab(this,'open')">Open</div>
+        <div class="tab" onclick="setTab(this,'resolved')">Resolved</div>
       </div>
-      <div class="panel-list" id="chat-list"></div>
+      <div class="panel-list" id="chat-list">
+        <div class="empty" style="padding:40px 0"><i class="ti ti-message-off"></i><p>No conversations yet</p><p style="font-size:12px">Messages will appear when customers write to you</p></div>
+      </div>
     </div>
-    <div class="main">
-      <div class="chat-view-wrap">
+    <div class="main" id="chat-main">
+      <div class="empty" id="chat-placeholder"><i class="ti ti-message-circle-2"></i><p>Select a conversation</p></div>
+      <div class="chat-wrap" id="chat-panel" style="display:none">
         <div class="chat-head">
-          <div class="chat-head-av" id="ch-av" style="background:#dcfce7;color:#166534">RK</div>
+          <div class="chat-head-av" id="ch-av">?</div>
           <div class="chat-head-info">
-            <div class="chat-head-name" id="ch-name">Rajan Kumar</div>
-            <div class="chat-head-sub" id="ch-num">+91 98765 43210 · <span style="color:#22c55e">●</span> Open</div>
+            <div class="chat-head-name" id="ch-name">—</div>
+            <div class="chat-head-sub" id="ch-sub">—</div>
           </div>
           <div class="head-actions">
-            <div class="icon-btn" title="Assign agent"><i class="ti ti-user-plus"></i></div>
-            <div class="icon-btn" title="Label"><i class="ti ti-tag"></i></div>
-            <div class="icon-btn" title="Add note"><i class="ti ti-note"></i></div>
-            <div class="icon-btn" style="color:#16a34a;border-color:#bbf7d0" title="Resolve"><i class="ti ti-check"></i></div>
+            <select class="assign-sel" id="agent-sel" onchange="patchConvo('agent',this.value)" style="margin-right:4px">
+              <option value="">Assign agent</option>
+              <option>Ayaan</option><option>Priya</option><option>Rohan</option><option>Meera</option>
+            </select>
+            <select class="assign-sel" id="label-sel" onchange="patchConvo('label',this.value)" style="margin-right:4px">
+              <option value="">Add label</option>
+              <option>Lead</option><option>VIP</option><option>Support</option>
+            </select>
+            <div class="icon-btn" id="resolve-btn" onclick="toggleResolve()" title="Resolve / Reopen"><i class="ti ti-check"></i></div>
             <div class="icon-btn" title="More"><i class="ti ti-dots-vertical"></i></div>
           </div>
         </div>
         <div class="chat-body" id="chat-body"></div>
         <div class="chat-input-bar">
           <div class="assign-bar">
-            <select class="assign-sel"><option>Assign agent</option><option>Ayaan</option><option>Priya</option><option>Rohan</option></select>
-            <select class="assign-sel"><option>Add label</option><option>Lead</option><option>VIP</option><option>Support</option></select>
-            <select class="assign-sel" style="margin-left:auto"><option>Use template</option><option>hello_world</option><option>order_update</option></select>
+            <select class="assign-sel" id="tpl-picker" onchange="insertTemplate(this.value)">
+              <option value="">Use template…</option>
+            </select>
           </div>
           <div class="input-row">
             <div class="icon-btn"><i class="ti ti-paperclip"></i></div>
             <div class="icon-btn"><i class="ti ti-mood-smile"></i></div>
-            <textarea class="chat-textarea" rows="1" placeholder="Type a message…" id="chat-input" onkeydown="handleKey(event)"></textarea>
+            <textarea class="chat-textarea" id="chat-input" rows="1" placeholder="Type a message…" onkeydown="handleKey(event)"></textarea>
             <button class="send-btn" onclick="sendMsg()"><i class="ti ti-send"></i></button>
           </div>
         </div>
@@ -163,27 +185,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
   <!-- CONTACTS -->
   <div id="v-contacts" class="view">
-    <div class="panel">
-      <div class="panel-head"><h2>Contacts</h2><div class="search-box"><i class="ti ti-search"></i><input placeholder="Search contacts…"/></div></div>
-      <div style="padding:10px 14px;display:flex;gap:6px;flex-wrap:wrap">
-        <span class="badge bg-green" style="cursor:pointer">All (248)</span>
-        <span class="badge bg-blue" style="cursor:pointer">Leads</span>
-        <span class="badge bg-amber" style="cursor:pointer">VIP</span>
-        <span class="badge bg-gray" style="cursor:pointer">Support</span>
-      </div>
-      <div class="panel-list" id="contact-list"></div>
-    </div>
     <div class="main">
       <div class="page">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-          <div><div class="page-title">Contacts</div><div style="font-size:13px;color:var(--tx2)">248 contacts</div></div>
-          <div style="display:flex;gap:8px">
-            <button class="btn-secondary"><i class="ti ti-upload" style="font-size:15px"></i> Import CSV</button>
-            <button class="btn-primary"><i class="ti ti-plus" style="font-size:15px"></i> Add contact</button>
-          </div>
+          <div><div class="page-title">Contacts</div><div class="page-sub" style="margin:0" id="contacts-count">Loading…</div></div>
         </div>
         <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;overflow:hidden">
-          <table class="data-table"><thead><tr><th>Name</th><th>Phone</th><th>Label</th><th>Last message</th><th>Agent</th><th></th></tr></thead><tbody id="contacts-table"></tbody></table>
+          <table class="data-table"><thead><tr><th>Name</th><th>Phone</th><th>Label</th><th>Last message</th><th>Status</th></tr></thead>
+          <tbody id="contacts-table"><tr><td colspan="5" style="text-align:center;color:var(--tx3);padding:20px">Loading…</td></tr></tbody></table>
         </div>
       </div>
     </div>
@@ -191,52 +200,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
   <!-- BROADCAST -->
   <div id="v-broadcast" class="view">
-    <div class="panel">
-      <div class="panel-head"><h2>Broadcasts</h2><div class="search-box"><i class="ti ti-search"></i><input placeholder="Search…"/></div></div>
-      <div class="panel-list">
-        <div style="padding:8px 14px;font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;font-weight:600">Recent</div>
-        <div class="chat-item active"><div class="ci-av" style="background:#dbeafe;color:#1e40af;font-size:18px"><i class="ti ti-speakerphone"></i></div><div class="ci-body"><div class="ci-top"><span class="ci-name">Diwali Promo</span><span class="ci-time">2d ago</span></div><div class="ci-msg">Sent · 1,240 recipients</div></div></div>
-        <div class="chat-item"><div class="ci-av" style="background:#dcfce7;color:#166534;font-size:18px"><i class="ti ti-speakerphone"></i></div><div class="ci-body"><div class="ci-top"><span class="ci-name">Order Update</span><span class="ci-time">5d ago</span></div><div class="ci-msg">Sent · 892 recipients</div></div></div>
-        <div class="chat-item"><div class="ci-av" style="background:#fef3c7;color:#92400e;font-size:18px"><i class="ti ti-speakerphone"></i></div><div class="ci-body"><div class="ci-top"><span class="ci-name">Flash Sale</span><span class="ci-time">1w ago</span></div><div class="ci-msg">Completed · 3,400</div></div></div>
-      </div>
-    </div>
     <div class="main">
       <div class="page">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-          <div class="page-title">Broadcast campaigns</div>
+          <div class="page-title">Broadcast</div>
           <button class="btn-primary" onclick="toggleBcast()"><i class="ti ti-plus" style="font-size:15px"></i> New broadcast</button>
         </div>
         <div class="page-sub">Send bulk messages using approved templates.</div>
-        <div class="stat-row">
-          <div class="stat-card"><div class="stat-label">Total sent</div><div class="stat-val">5,532</div></div>
-          <div class="stat-card"><div class="stat-label">Delivered</div><div class="stat-val" style="color:#16a34a">5,109</div></div>
-          <div class="stat-card"><div class="stat-label">Read</div><div class="stat-val" style="color:#2563eb">3,844</div></div>
-          <div class="stat-card"><div class="stat-label">Failed</div><div class="stat-val" style="color:#dc2626">423</div></div>
-        </div>
-        <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;overflow:hidden;margin-bottom:16px">
-          <table class="data-table"><thead><tr><th>Campaign</th><th>Template</th><th>Sent</th><th>Delivered</th><th>Read</th><th>Status</th><th>Date</th></tr></thead>
-          <tbody>
-            <tr><td><b style="font-weight:600">Diwali Promo</b></td><td><span class="badge bg-gray">diwali_offer</span></td><td>1,240</td><td>1,190</td><td>980</td><td><span class="badge bg-green">Completed</span></td><td>Nov 10</td></tr>
-            <tr><td><b style="font-weight:600">Order Update</b></td><td><span class="badge bg-gray">order_shipped</span></td><td>892</td><td>871</td><td>654</td><td><span class="badge bg-green">Completed</span></td><td>Nov 7</td></tr>
-            <tr><td><b style="font-weight:600">Flash Sale</b></td><td><span class="badge bg-gray">flash_sale</span></td><td>3,400</td><td>3,048</td><td>2,210</td><td><span class="badge bg-green">Completed</span></td><td>Nov 4</td></tr>
-            <tr><td><b style="font-weight:600">Welcome Series</b></td><td><span class="badge bg-gray">welcome_msg</span></td><td>—</td><td>—</td><td>—</td><td><span class="badge bg-amber">Scheduled</span></td><td>Nov 14</td></tr>
-          </tbody></table>
-        </div>
-        <div id="bcast-form" style="display:none;background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px">
-          <div style="font-size:15px;font-weight:600;margin-bottom:16px">New broadcast</div>
-          <div class="form-group"><label class="form-label">Campaign name</label><input class="form-input" placeholder="e.g. November Sale"/></div>
-          <div class="form-group"><label class="form-label">Template</label><select class="form-input"><option>hello_world</option><option>order_update</option><option>diwali_offer</option></select></div>
-          <div class="form-group"><label class="form-label">Recipients</label>
-            <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <label style="flex:1;min-width:160px;display:flex;align-items:center;gap:8px;padding:10px;border:0.5px solid var(--bd);border-radius:8px;cursor:pointer"><input type="checkbox" checked style="accent-color:var(--wa)"/> All contacts (248)</label>
-              <label style="flex:1;min-width:160px;display:flex;align-items:center;gap:8px;padding:10px;border:0.5px solid var(--bd);border-radius:8px;cursor:pointer"><input type="checkbox" style="accent-color:var(--wa)"/> Leads only (84)</label>
-              <label style="flex:1;min-width:160px;display:flex;align-items:center;gap:8px;padding:10px;border:0.5px solid var(--bd);border-radius:8px;cursor:pointer"><input type="checkbox" style="accent-color:var(--wa)"/> VIP only (32)</label>
-            </div>
+        <div id="bcast-form" style="display:none;background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px;margin-bottom:16px">
+          <div style="font-size:15px;font-weight:600;margin-bottom:14px">New broadcast</div>
+          <div class="form-group"><label class="form-label">Template</label>
+            <select class="form-input" id="bc-template"><option value="">Select template…</option></select>
           </div>
-          <div style="display:flex;gap:8px">
-            <button class="btn-primary">Schedule broadcast</button>
+          <div class="form-group"><label class="form-label">Recipients — phone numbers (one per line, with country code, no +)</label>
+            <textarea class="form-input" id="bc-recipients" rows="5" placeholder="919876543210&#10;918765432109&#10;917654321098"></textarea>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn-primary" onclick="sendBroadcast()" id="bc-btn">Send broadcast</button>
             <button class="btn-secondary" onclick="toggleBcast()">Cancel</button>
+            <span id="bc-status" style="font-size:12px;color:var(--tx2)"></span>
           </div>
+        </div>
+        <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px">
+          <div style="font-size:14px;font-weight:600;margin-bottom:8px;color:var(--tx2)">Broadcasts are sent directly via the WhatsApp API to the numbers you enter above. Check your Meta Business Manager for delivery reports.</div>
         </div>
       </div>
     </div>
@@ -244,38 +230,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
   <!-- TEMPLATES -->
   <div id="v-templates" class="view">
-    <div class="panel">
-      <div class="panel-head"><h2>Templates</h2><div class="search-box"><i class="ti ti-search"></i><input placeholder="Search templates…"/></div></div>
-      <div class="panel-list">
-        <div style="padding:8px 14px;font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;font-weight:600">Approved</div>
-        <div class="chat-item active"><div class="ci-body"><div class="ci-top"><span class="ci-name">hello_world</span><span class="badge bg-green" style="font-size:10px">Approved</span></div><div class="ci-msg">en_US · Marketing</div></div></div>
-        <div class="chat-item"><div class="ci-body"><div class="ci-top"><span class="ci-name">order_update</span><span class="badge bg-green" style="font-size:10px">Approved</span></div><div class="ci-msg">en_US · Utility</div></div></div>
-        <div class="chat-item"><div class="ci-body"><div class="ci-top"><span class="ci-name">diwali_offer</span><span class="badge bg-green" style="font-size:10px">Approved</span></div><div class="ci-msg">en_IN · Marketing</div></div></div>
-        <div style="padding:8px 14px;font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;font-weight:600">Pending</div>
-        <div class="chat-item"><div class="ci-body"><div class="ci-top"><span class="ci-name">flash_sale_v2</span><span class="badge bg-amber" style="font-size:10px">Pending</span></div><div class="ci-msg">en_US · Marketing</div></div></div>
-      </div>
-    </div>
     <div class="main">
       <div class="page">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-          <div class="page-title">Message templates</div>
-          <button class="btn-primary"><i class="ti ti-plus" style="font-size:15px"></i> New template</button>
-        </div>
-        <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px;margin-bottom:12px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-            <div><div style="font-size:15px;font-weight:600">hello_world</div><div style="font-size:12px;color:var(--tx2);margin-top:2px">Marketing · en_US <span class="badge bg-green" style="margin-left:6px">Approved</span></div></div>
-            <div style="display:flex;gap:6px"><div class="icon-btn"><i class="ti ti-copy"></i></div><div class="icon-btn"><i class="ti ti-edit"></i></div><div class="icon-btn" style="color:#dc2626"><i class="ti ti-trash"></i></div></div>
-          </div>
-          <div style="background:#f0f2f5;border-radius:10px;padding:14px;max-width:320px;font-size:13px;line-height:1.6">Hello <strong>{{1}}</strong>,<br><br>Welcome to our store! Tap below to explore our latest offers.<br><br><span style="color:#128C7E;font-weight:600">🛒 Shop now →</span></div>
-          <div style="margin-top:10px;font-size:12px;color:var(--tx2)">Variables: <code style="background:var(--bg2);padding:1px 6px;border-radius:4px">{{1}}</code> = customer name</div>
-        </div>
-        <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-            <div><div style="font-size:15px;font-weight:600">order_update</div><div style="font-size:12px;color:var(--tx2);margin-top:2px">Utility · en_US <span class="badge bg-green" style="margin-left:6px">Approved</span></div></div>
-            <div style="display:flex;gap:6px"><div class="icon-btn"><i class="ti ti-copy"></i></div><div class="icon-btn"><i class="ti ti-edit"></i></div></div>
-          </div>
-          <div style="background:#f0f2f5;border-radius:10px;padding:14px;max-width:320px;font-size:13px;line-height:1.6">Hi <strong>{{1}}</strong>, your order <strong>#{{2}}</strong> has been shipped and will arrive in 2-3 days. Track: {{3}}</div>
-          <div style="margin-top:10px;font-size:12px;color:var(--tx2)">Variables: <code style="background:var(--bg2);padding:1px 6px;border-radius:4px">{{1}}</code> name · <code style="background:var(--bg2);padding:1px 6px;border-radius:4px">{{2}}</code> order ID · <code style="background:var(--bg2);padding:1px 6px;border-radius:4px">{{3}}</code> tracking link</div>
+        <div class="page-title" style="margin-bottom:4px">Message templates</div>
+        <div class="page-sub">Live from your WhatsApp Business Account.</div>
+        <div id="templates-list" style="display:flex;flex-direction:column;gap:12px">
+          <div style="color:var(--tx3);text-align:center;padding:40px">Loading…</div>
         </div>
       </div>
     </div>
@@ -286,23 +246,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="main">
       <div class="page">
         <div class="page-title">Analytics</div>
-        <div class="page-sub">Last 30 days · All agents</div>
-        <div class="stat-row">
-          <div class="stat-card"><div class="stat-label">Total conversations</div><div class="stat-val">1,284</div><div style="font-size:12px;color:#16a34a;margin-top:4px">↑ 12% vs last month</div></div>
-          <div class="stat-card"><div class="stat-label">Avg response time</div><div class="stat-val">4m 22s</div><div style="font-size:12px;color:#16a34a;margin-top:4px">↓ 18% faster</div></div>
-          <div class="stat-card"><div class="stat-label">Resolved</div><div class="stat-val">1,048</div><div style="font-size:12px;color:var(--tx2);margin-top:4px">81.6% rate</div></div>
-          <div class="stat-card"><div class="stat-label">Failed messages</div><div class="stat-val">423</div><div style="font-size:12px;color:#dc2626;margin-top:4px">↑ check number</div></div>
+        <div class="page-sub">Based on conversations in this session.</div>
+        <div class="stat-row" id="analytics-stats">
+          <div class="stat-card"><div class="stat-label">Total conversations</div><div class="stat-val" id="an-total">0</div></div>
+          <div class="stat-card"><div class="stat-label">Open</div><div class="stat-val" id="an-open" style="color:#2563eb">0</div></div>
+          <div class="stat-card"><div class="stat-label">Resolved</div><div class="stat-val" id="an-resolved" style="color:#16a34a">0</div></div>
+          <div class="stat-card"><div class="stat-label">Total messages</div><div class="stat-val" id="an-msgs">0</div></div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:16px">
-            <div style="font-size:14px;font-weight:600;margin-bottom:12px">Agent performance</div>
-            <table class="data-table"><thead><tr><th>Agent</th><th>Handled</th><th>Resolved</th><th>Avg time</th></tr></thead>
-            <tbody><tr><td>Ayaan</td><td>412</td><td>380</td><td>3m 10s</td></tr><tr><td>Priya</td><td>388</td><td>340</td><td>5m 02s</td></tr><tr><td>Rohan</td><td>320</td><td>288</td><td>4m 45s</td></tr><tr><td>Meera</td><td>164</td><td>140</td><td>6m 20s</td></tr></tbody></table>
-          </div>
-          <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:16px">
-            <div style="font-size:14px;font-weight:600;margin-bottom:14px">Label breakdown</div>
-            <div id="label-bars"></div>
-          </div>
+        <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:16px">
+          <div style="font-size:14px;font-weight:600;margin-bottom:12px">All conversations</div>
+          <table class="data-table"><thead><tr><th>Contact</th><th>Phone</th><th>Messages</th><th>Status</th><th>Label</th><th>Agent</th></tr></thead>
+          <tbody id="analytics-table"><tr><td colspan="6" style="text-align:center;color:var(--tx3);padding:20px">No data yet</td></tr></tbody></table>
         </div>
       </div>
     </div>
@@ -310,126 +264,391 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
   <!-- SETTINGS -->
   <div id="v-settings" class="view">
-    <div class="panel">
-      <div class="panel-head"><h2>Settings</h2></div>
-      <div class="panel-list">
-        <div class="chat-item active"><div class="ci-body"><div class="ci-name">General</div><div class="ci-msg">Account & profile</div></div></div>
-        <div class="chat-item"><div class="ci-body"><div class="ci-name">WhatsApp number</div><div class="ci-msg">Phone & API config</div></div></div>
-        <div class="chat-item"><div class="ci-body"><div class="ci-name">Team members</div><div class="ci-msg">Agents & roles</div></div></div>
-        <div class="chat-item"><div class="ci-body"><div class="ci-name">Quick replies</div><div class="ci-msg">Saved responses</div></div></div>
-        <div class="chat-item"><div class="ci-body"><div class="ci-name">Webhooks</div><div class="ci-msg">Integrations</div></div></div>
-        <div class="chat-item"><div class="ci-body"><div class="ci-name">Billing</div><div class="ci-msg">Plan & usage</div></div></div>
-      </div>
-    </div>
     <div class="main">
       <div class="page">
-        <div class="page-title" style="margin-bottom:20px">General settings</div>
+        <div class="page-title" style="margin-bottom:20px">Settings</div>
         <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px;margin-bottom:12px">
-          <div style="font-size:14px;font-weight:600;margin-bottom:14px">Business profile</div>
-          <div class="form-group"><label class="form-label">Business name</label><input class="form-input" value="HomeGenie India"/></div>
-          <div class="form-group"><label class="form-label">Phone Number ID <span style="color:#dc2626">*</span></label><input class="form-input" placeholder="<<<REPLACE_THIS_PHONE_NUMBER_ID>>>" style="font-family:monospace;font-size:12px"/></div>
-          <div class="form-group"><label class="form-label">WABA ID <span style="color:#dc2626">*</span></label><input class="form-input" placeholder="<<<REPLACE_THIS_WABA_ID>>>" style="font-family:monospace;font-size:12px"/></div>
-          <div class="form-group"><label class="form-label">Access Token <span style="color:#dc2626">*</span></label><input class="form-input" type="password" placeholder="<<<REPLACE_THIS_ACCESS_TOKEN>>>"/></div>
-          <button class="btn-primary">Save changes</button>
+          <div style="font-size:14px;font-weight:600;margin-bottom:14px">Connection status</div>
+          <div id="health-status" style="font-size:13px;color:var(--tx2)">Checking…</div>
+        </div>
+        <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px;margin-bottom:12px">
+          <div style="font-size:14px;font-weight:600;margin-bottom:14px">Webhook setup</div>
+          <div style="font-size:13px;color:var(--tx2);line-height:2">
+            <div>1. Run your server publicly (use <strong>ngrok http 3000</strong> locally)</div>
+            <div>2. Go to <strong>developers.facebook.com → Your App → WhatsApp → Configuration</strong></div>
+            <div>3. Callback URL: <code style="background:var(--bg2);padding:2px 8px;border-radius:4px">https://YOUR_DOMAIN/webhook</code></div>
+            <div>4. Verify token: the value of <code style="background:var(--bg2);padding:2px 8px;border-radius:4px">WEBHOOK_VERIFY_TOKEN</code> in your .env</div>
+            <div>5. Subscribe to: <code style="background:var(--bg2);padding:2px 8px;border-radius:4px">messages</code></div>
+          </div>
         </div>
         <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:20px">
-          <div style="font-size:14px;font-weight:600;margin-bottom:14px">Webhook</div>
-          <div class="form-group"><label class="form-label">Callback URL</label><input class="form-input" placeholder="https://your-domain.com/webhook"/></div>
-          <div class="form-group"><label class="form-label">Verify token</label><input class="form-input" placeholder="<<<REPLACE_THIS_WEBHOOK_VERIFY_TOKEN>>>"/></div>
-          <button class="btn-primary">Save webhook</button>
+          <div style="font-size:14px;font-weight:600;margin-bottom:14px">Send a test message</div>
+          <div class="form-group"><label class="form-label">Phone number (country code, no +)</label><input class="form-input" id="test-to" placeholder="919876543210"/></div>
+          <div class="form-group"><label class="form-label">Message</label><input class="form-input" id="test-msg" placeholder="Hello from my WhatsApp API!"/></div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn-primary" onclick="sendTestMsg()">Send test</button>
+            <span id="test-status" style="font-size:12px;color:var(--tx2)"></span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<div class="toast" id="toast"></div>
+
 <script>
-const COLORS=[['#dcfce7','#166534'],['#dbeafe','#1e40af'],['#fef3c7','#92400e'],['#fce7f3','#9d174d'],['#ede9fe','#5b21b6'],['#fee2e2','#991b1b'],['#e0f2fe','#0c4a6e']];
-const CONTACTS=[
-  {n:'Rajan Kumar',p:'+91 98765 43210',l:'Lead',t:'2h ago',a:'Ayaan'},
-  {n:'Meera Shah',p:'+91 87654 32109',l:'VIP',t:'4h ago',a:'Priya'},
-  {n:'Arjun Patel',p:'+91 76543 21098',l:'Support',t:'Yesterday',a:'Rohan'},
-  {n:'Sneha Iyer',p:'+91 65432 10987',l:'Lead',t:'2d ago',a:'Ayaan'},
-  {n:'Vikram Nair',p:'+91 54321 09876',l:'VIP',t:'3d ago',a:'Priya'},
-  {n:'Pooja Reddy',p:'+91 43210 98765',l:'',t:'5d ago',a:'Meera'},
-  {n:'Kiran Desai',p:'+91 32109 87654',l:'Lead',t:'1w ago',a:'Rohan'},
+// ── STATE ────────────────────────────────────────────────────────────────────
+let convos    = {};   // phone → {name,phone,messages,unread,agent,label,status}
+let activePhone = null;
+let tabFilter   = 'all';
+let templates   = [];
+
+const COLORS = [
+  ['#dcfce7','#166534'],['#dbeafe','#1e40af'],['#fef3c7','#92400e'],
+  ['#fce7f3','#9d174d'],['#ede9fe','#5b21b6'],['#fee2e2','#991b1b'],['#e0f2fe','#0c4a6e']
 ];
-const CONVOS=[
-  {n:'Rajan Kumar',p:'+91 98765 43210',msg:'What is the delivery time for my order?',t:'10:42 AM',unread:2,status:'open'},
-  {n:'Meera Shah',p:'+91 87654 32109',msg:'Thanks for the quick reply!',t:'9:30 AM',unread:0,status:'open'},
-  {n:'Arjun Patel',p:'+91 76543 21098',msg:'I need help with the return process',t:'Yesterday',unread:1,status:'open'},
-  {n:'Sneha Iyer',p:'+91 65432 10987',msg:'Received the package, all good 👍',t:'Yesterday',unread:0,status:'resolved'},
-  {n:'Vikram Nair',p:'+91 54321 09876',msg:'Do you have this in blue color?',t:'Mon',unread:3,status:'open'},
-  {n:'Pooja Reddy',p:'+91 43210 98765',msg:'Please share the invoice.',t:'Mon',unread:0,status:'open'},
-  {n:'Kiran Desai',p:'+91 32109 87654',msg:'Hi, I placed an order yesterday...',t:'Sun',unread:0,status:'resolved'},
-];
-const CHAT_DATA={
-  0:[{dir:'in',text:'Hi, I placed an order yesterday. When will it be delivered?',t:'10:30 AM'},{dir:'out',text:'Hello Rajan! Let me check your order details right away.',t:'10:31 AM'},{dir:'out',text:'Your order #ORD-8821 was dispatched today and will arrive in 2-3 business days. Tracking link coming shortly!',t:'10:32 AM'},{dir:'in',text:'What is the delivery time for my order?',t:'10:42 AM'}],
-  1:[{dir:'in',text:'I got my order, everything looks great!',t:'9:20 AM'},{dir:'out',text:'Wonderful! So glad to hear that Meera. Do share a review if you get a chance!',t:'9:25 AM'},{dir:'in',text:'Thanks for the quick reply!',t:'9:30 AM'}],
-  2:[{dir:'in',text:'Hello, I want to return a product. How do I do that?',t:'3:10 PM'},{dir:'out',text:'Hi Arjun! We are sorry to hear that. Could you share your order ID and the reason for return?',t:'3:15 PM'},{dir:'in',text:'I need help with the return process',t:'5:00 PM'}],
-};
-let activeChat=0;
-function ini(n){return n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();}
-function labelBadge(l){if(!l)return '';const c=l==='VIP'?'bg-amber':l==='Lead'?'bg-blue':'bg-gray';return `<span class="badge ${c}" style="font-size:10px">${l}</span>`;}
-function buildChatList(){
-  const el=document.getElementById('chat-list');el.innerHTML='';
-  CONVOS.forEach((c,i)=>{
-    const [bg,tx]=COLORS[i%COLORS.length];
-    const d=document.createElement('div');d.className='chat-item'+(i===0?' active':'');
-    d.onclick=()=>openChat(i,d);
-    d.innerHTML=`<div class="ci-av" style="background:${bg};color:${tx}">${ini(c.n)}</div>
-    <div class="ci-body"><div class="ci-top"><span class="ci-name">${c.n}</span><span class="ci-time">${c.t}</span></div>
-    <div class="ci-msg" style="display:flex;justify-content:space-between;align-items:center"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">${c.msg}</span>${c.unread?`<span class="ci-badge">${c.unread}</span>`:''}</div></div>`;
+const colorMap = {};
+let colorIdx = 0;
+function colorFor(phone) {
+  if (!colorMap[phone]) colorMap[phone] = COLORS[(colorIdx++) % COLORS.length];
+  return colorMap[phone];
+}
+function ini(name) { return (name||'?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(); }
+function timeAgo(t) { if(!t)return ''; return t; }
+
+// ── TOAST ────────────────────────────────────────────────────────────────────
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'), 3000);
+}
+
+// ── SSE — receive live events from server ─────────────────────────────────────
+function connectSSE() {
+  const es = new EventSource('/events');
+  es.addEventListener('new_message', e => {
+    const {phone, message, meta} = JSON.parse(e.data);
+    if (!convos[phone]) convos[phone] = { name: meta.name||phone, phone, messages:[], unread:0, agent:'', label:'', status:'open' };
+    const c = convos[phone];
+    c.name   = meta.name || c.name;
+    c.unread = meta.unread;
+    c.status = meta.status || 'open';
+    c.messages.push(message);
+    if (phone === activePhone) { appendMsg(message); c.unread = 0; }
+    renderChatList();
+    if (message.dir === 'in') toast(`📩 ${c.name}: ${message.text}`);
+  });
+  es.addEventListener('conversation_updated', e => {
+    const d = JSON.parse(e.data);
+    if (convos[d.phone]) Object.assign(convos[d.phone], d);
+    renderChatList();
+    if (d.phone === activePhone) updateChatHead();
+  });
+  es.addEventListener('status_update', e => {
+    // could show tick/double tick later
+  });
+  es.onopen  = () => document.getElementById('conn-dot').classList.add('live');
+  es.onerror = () => document.getElementById('conn-dot').classList.remove('live');
+}
+
+// ── FETCH CONVERSATIONS FROM SERVER ──────────────────────────────────────────
+async function loadConvos() {
+  try {
+    const list = await fetch('/api/conversations').then(r=>r.json());
+    list.forEach(c => {
+      convos[c.phone] = convos[c.phone] || { messages: [] };
+      Object.assign(convos[c.phone], c);
+    });
+    renderChatList();
+  } catch(e) { console.warn('Could not load convos', e); }
+}
+
+async function loadConvoMessages(phone) {
+  try {
+    const c = await fetch(`/api/conversations/${phone}`).then(r=>r.json());
+    convos[phone] = c;
+    renderChatList();
+    renderMessages(c.messages);
+  } catch(e) { console.warn('Could not load messages', e); }
+}
+
+// ── CHAT LIST ─────────────────────────────────────────────────────────────────
+function renderChatList(filter='') {
+  const el = document.getElementById('chat-list');
+  let list = Object.values(convos);
+  if (tabFilter === 'open')     list = list.filter(c=>c.status==='open');
+  if (tabFilter === 'resolved') list = list.filter(c=>c.status==='resolved');
+  if (filter) list = list.filter(c=>(c.name+c.phone).toLowerCase().includes(filter.toLowerCase()));
+  list.sort((a,b)=>(b.messages[b.messages.length-1]?.t||'').localeCompare(a.messages[a.messages.length-1]?.t||''));
+
+  if (!list.length) {
+    el.innerHTML = `<div class="empty" style="padding:40px 0"><i class="ti ti-message-off"></i><p>No conversations</p></div>`;
+    return;
+  }
+  el.innerHTML = '';
+  list.forEach(c => {
+    const [bg,tx] = colorFor(c.phone);
+    const last = c.messages[c.messages.length-1];
+    const d = document.createElement('div');
+    d.className = 'chat-item' + (c.phone===activePhone?' active':'');
+    d.onclick = () => openChat(c.phone);
+    d.innerHTML = `
+      <div class="ci-av" style="background:${bg};color:${tx}">${ini(c.name)}</div>
+      <div class="ci-body">
+        <div class="ci-top"><span class="ci-name">${c.name}</span><span class="ci-time">${last?.t||''}</span></div>
+        <div class="ci-msg"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${last?.text||''}</span>${c.unread?`<span class="ci-badge">${c.unread}</span>`:''}</div>
+      </div>`;
     el.appendChild(d);
   });
+  updateAnalytics();
+  updateContactsPage();
 }
-function openChat(i,el){
-  document.querySelectorAll('#chat-list .chat-item').forEach(e=>e.classList.remove('active'));
-  if(el)el.classList.add('active');
-  activeChat=i;
-  const c=CONVOS[i];const [bg,tx]=COLORS[i%COLORS.length];
-  document.getElementById('ch-av').style.background=bg;document.getElementById('ch-av').style.color=tx;document.getElementById('ch-av').textContent=ini(c.n);
-  document.getElementById('ch-name').textContent=c.n;
-  document.getElementById('ch-num').innerHTML=`${c.p} · <span style="color:${c.status==='open'?'#22c55e':'#94a3b8'}">●</span> ${c.status.charAt(0).toUpperCase()+c.status.slice(1)}`;
-  renderMsgs(CHAT_DATA[i]||[]);
+
+function filterConvos(v) { renderChatList(v); }
+function setTab(el, tab) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active'); tabFilter = tab; renderChatList();
 }
-function renderMsgs(msgs){
-  const b=document.getElementById('chat-body');b.innerHTML='';
-  const sep=document.createElement('div');sep.className='day-sep';sep.textContent='Today';b.appendChild(sep);
-  msgs.forEach(m=>{const w=document.createElement('div');w.className=`msg ${m.dir}`;w.innerHTML=`<div class="msg-bubble">${m.text}</div><div class="msg-time">${m.t}</div>`;b.appendChild(w);});
-  b.scrollTop=b.scrollHeight;
+
+// ── OPEN CHAT ─────────────────────────────────────────────────────────────────
+async function openChat(phone) {
+  activePhone = phone;
+  document.getElementById('chat-placeholder').style.display = 'none';
+  document.getElementById('chat-panel').style.display = 'flex';
+  updateChatHead();
+  renderChatList();
+  if (!convos[phone].messages.length) {
+    await loadConvoMessages(phone);
+  } else {
+    renderMessages(convos[phone].messages);
+    convos[phone].unread = 0;
+    renderChatList();
+  }
 }
-function sendMsg(){
-  const inp=document.getElementById('chat-input');const txt=inp.value.trim();if(!txt)return;
-  const msgs=CHAT_DATA[activeChat]||(CHAT_DATA[activeChat]=[]);
-  msgs.push({dir:'out',text:txt,t:new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})});
-  renderMsgs(msgs);inp.value='';
+
+function updateChatHead() {
+  if (!activePhone) return;
+  const c = convos[activePhone];
+  const [bg,tx] = colorFor(activePhone);
+  document.getElementById('ch-av').style.background = bg;
+  document.getElementById('ch-av').style.color = tx;
+  document.getElementById('ch-av').textContent = ini(c.name);
+  document.getElementById('ch-name').textContent = c.name;
+  document.getElementById('ch-sub').innerHTML = `${activePhone} · <span style="color:${c.status==='open'?'#22c55e':'#94a3b8'}">●</span> ${c.status==='open'?'Open':'Resolved'}`;
+  document.getElementById('agent-sel').value = c.agent || '';
+  document.getElementById('label-sel').value = c.label || '';
+  document.getElementById('resolve-btn').style.color = c.status==='resolved'?'#dc2626':'#16a34a';
+  document.getElementById('resolve-btn').style.borderColor = c.status==='resolved'?'#fca5a5':'#bbf7d0';
+  document.getElementById('resolve-btn').title = c.status==='open'?'Resolve':'Reopen';
 }
-function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
-function buildContactList(){
-  const el=document.getElementById('contact-list');if(!el)return;el.innerHTML='';
-  CONTACTS.forEach((c,i)=>{const [bg,tx]=COLORS[i%COLORS.length];const d=document.createElement('div');d.className='chat-item';d.innerHTML=`<div class="ci-av" style="background:${bg};color:${tx};font-size:12px">${ini(c.n)}</div><div class="ci-body"><div class="ci-top"><span class="ci-name">${c.n}</span></div><div class="ci-msg">${c.p}</div></div>`;el.appendChild(d);});
-  const tb=document.getElementById('contacts-table');if(!tb)return;tb.innerHTML='';
-  CONTACTS.forEach((c,i)=>{const [bg,tx]=COLORS[i%COLORS.length];const tr=document.createElement('tr');tr.innerHTML=`<td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:${bg};color:${tx};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">${ini(c.n)}</div>${c.n}</div></td><td style="color:var(--tx2)">${c.p}</td><td>${labelBadge(c.l)}</td><td style="color:var(--tx2)">${c.t}</td><td>${c.a}</td><td><div style="display:flex;gap:4px"><div class="icon-btn" style="width:28px;height:28px"><i class="ti ti-message-circle-2" style="font-size:13px"></i></div><div class="icon-btn" style="width:28px;height:28px"><i class="ti ti-edit" style="font-size:13px"></i></div></div></td>`;tb.appendChild(tr);});
+
+// ── MESSAGES ──────────────────────────────────────────────────────────────────
+function renderMessages(msgs) {
+  const b = document.getElementById('chat-body');
+  b.innerHTML = '';
+  const sep = document.createElement('div'); sep.className='day-sep'; sep.textContent='Today'; b.appendChild(sep);
+  msgs.forEach(m => appendMsg(m, false));
+  b.scrollTop = b.scrollHeight;
 }
-function buildLabelBars(){
-  const el=document.getElementById('label-bars');if(!el)return;
-  const data=[{l:'Lead',v:84,c:'#3b82f6'},{l:'VIP',v:32,c:'#f59e0b'},{l:'Support',v:56,c:'#8b5cf6'},{l:'Untagged',v:76,c:'#94a3b8'}];
-  const total=data.reduce((s,d)=>s+d.v,0);
-  el.innerHTML=data.map(d=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><div style="font-size:12px;color:var(--tx2);width:70px">${d.l}</div><div style="flex:1;height:14px;background:var(--bg2);border-radius:7px;overflow:hidden"><div style="width:${Math.round(d.v/total*100)}%;height:100%;background:${d.c};border-radius:7px"></div></div><div style="font-size:12px;font-weight:600;width:30px;text-align:right">${d.v}</div></div>`).join('');
+
+function appendMsg(m, scroll=true) {
+  const b = document.getElementById('chat-body');
+  const w = document.createElement('div'); w.className=`msg ${m.dir}`;
+  w.innerHTML = `<div class="msg-bubble">${m.text}</div><div class="msg-time">${m.t}</div>`;
+  b.appendChild(w);
+  if (scroll) b.scrollTop = b.scrollHeight;
 }
-const VIEWS=['inbox','contacts','broadcast','templates','analytics','settings'];
-function nav(page){
-  VIEWS.forEach(v=>{const el=document.getElementById('v-'+v);if(el)el.classList.remove('active');});
-  const el=document.getElementById('v-'+page);if(el)el.classList.add('active');
-  const btns=[...document.querySelectorAll('.s-btn')];
-  btns.forEach(b=>b.classList.remove('active'));
+
+// ── SEND ──────────────────────────────────────────────────────────────────────
+async function sendMsg() {
+  if (!activePhone) return toast('Select a conversation first');
+  const inp = document.getElementById('chat-input');
+  const text = inp.value.trim(); if (!text) return;
+  inp.value = '';
+
+  // Optimistic UI
+  const c = convos[activePhone];
+  const msg = { dir:'out', text, t: new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) };
+  c.messages.push(msg); appendMsg(msg); renderChatList();
+
+  try {
+    const r = await fetch('/api/send-message', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ to: activePhone, message: text })
+    }).then(r=>r.json());
+    if (!r.success) toast('❌ Send failed: ' + JSON.stringify(r.error));
+  } catch(e) { toast('❌ Network error'); }
+}
+
+function handleKey(e) { if (e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendMsg(); } }
+
+// ── PATCH CONVO (agent/label/status) ─────────────────────────────────────────
+async function patchConvo(field, value) {
+  if (!activePhone) return;
+  convos[activePhone][field] = value;
+  try {
+    await fetch(`/api/conversations/${activePhone}`, {
+      method:'PATCH', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ [field]: value })
+    });
+  } catch(e) {}
+  updateChatHead(); renderChatList();
+}
+
+async function toggleResolve() {
+  if (!activePhone) return;
+  const c = convos[activePhone];
+  const newStatus = c.status==='open'?'resolved':'open';
+  await patchConvo('status', newStatus);
+}
+
+// ── TEMPLATES ─────────────────────────────────────────────────────────────────
+async function loadTemplates() {
+  const el = document.getElementById('templates-list');
+  const bc = document.getElementById('bc-template');
+  const pk = document.getElementById('tpl-picker');
+  try {
+    const r = await fetch('/api/templates').then(r=>r.json());
+    if (!r.success) throw new Error(JSON.stringify(r.error));
+    templates = r.data.data || [];
+    // render templates page
+    if (!templates.length) { el.innerHTML='<div style="color:var(--tx3);text-align:center;padding:40px">No templates found in your WABA</div>'; return; }
+    el.innerHTML = templates.map(t=>`
+      <div style="background:var(--bg);border:0.5px solid var(--bd);border-radius:10px;padding:18px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div>
+            <span style="font-size:15px;font-weight:600">${t.name}</span>
+            <span class="badge ${t.status==='APPROVED'?'bg-green':t.status==='PENDING'?'bg-amber':'bg-red'}" style="margin-left:8px">${t.status}</span>
+          </div>
+          <span style="font-size:12px;color:var(--tx2)">${t.category} · ${t.language}</span>
+        </div>
+        <div style="background:#f0f2f5;border-radius:8px;padding:12px;font-size:13px;line-height:1.6;max-width:340px">
+          ${(t.components||[]).map(c=>`<div>${c.text||''}</div>`).join('')}
+        </div>
+      </div>`).join('');
+    // populate dropdowns
+    const opts = templates.filter(t=>t.status==='APPROVED').map(t=>`<option value="${t.name}">${t.name}</option>`).join('');
+    bc.innerHTML = '<option value="">Select template…</option>' + opts;
+    pk.innerHTML = '<option value="">Use template…</option>' + opts;
+  } catch(e) {
+    el.innerHTML = `<div style="color:#dc2626;padding:20px;font-size:13px">Error loading templates: ${e.message}</div>`;
+  }
+}
+
+function insertTemplate(name) {
+  if (!name) return;
+  const tpl = templates.find(t=>t.name===name);
+  if (!tpl) return;
+  const body = (tpl.components||[]).find(c=>c.type==='BODY');
+  if (body) document.getElementById('chat-input').value = body.text || '';
+  document.getElementById('tpl-picker').value = '';
+}
+
+// ── BROADCAST ─────────────────────────────────────────────────────────────────
+function toggleBcast() {
+  const f=document.getElementById('bcast-form');
+  f.style.display=f.style.display==='none'?'block':'none';
+}
+
+async function sendBroadcast() {
+  const tpl = document.getElementById('bc-template').value;
+  const nums = document.getElementById('bc-recipients').value.trim().split('\n').map(s=>s.trim()).filter(Boolean);
+  const btn = document.getElementById('bc-btn');
+  const status = document.getElementById('bc-status');
+  if (!tpl) return toast('Select a template first');
+  if (!nums.length) return toast('Enter at least one number');
+
+  btn.disabled = true; status.textContent = `Sending to ${nums.length} recipients…`;
+  let sent=0, failed=0;
+  for (const to of nums) {
+    try {
+      const r = await fetch('/api/send-template',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({to,template_name:tpl})
+      }).then(r=>r.json());
+      r.success ? sent++ : failed++;
+    } catch { failed++; }
+  }
+  btn.disabled = false;
+  status.textContent = `✅ Sent: ${sent}  ❌ Failed: ${failed}`;
+  toast(`Broadcast done — ${sent} sent, ${failed} failed`);
+}
+
+// ── ANALYTICS ─────────────────────────────────────────────────────────────────
+function updateAnalytics() {
+  const list = Object.values(convos);
+  document.getElementById('an-total').textContent    = list.length;
+  document.getElementById('an-open').textContent     = list.filter(c=>c.status==='open').length;
+  document.getElementById('an-resolved').textContent = list.filter(c=>c.status==='resolved').length;
+  document.getElementById('an-msgs').textContent     = list.reduce((s,c)=>s+c.messages.length,0);
+  const tb = document.getElementById('analytics-table');
+  if (!list.length) { tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--tx3);padding:20px">No data yet</td></tr>'; return; }
+  tb.innerHTML = list.map(c=>`<tr>
+    <td><b style="font-weight:600">${c.name}</b></td>
+    <td style="color:var(--tx2)">${c.phone}</td>
+    <td>${c.messages.length}</td>
+    <td><span class="badge ${c.status==='open'?'bg-blue':'bg-green'}">${c.status}</span></td>
+    <td>${c.label?`<span class="badge bg-amber">${c.label}</span>`:''}</td>
+    <td>${c.agent||''}</td>
+  </tr>`).join('');
+}
+
+// ── CONTACTS PAGE ─────────────────────────────────────────────────────────────
+function updateContactsPage() {
+  const list = Object.values(convos);
+  document.getElementById('contacts-count').textContent = `${list.length} contacts`;
+  const tb = document.getElementById('contacts-table');
+  if (!list.length) { tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--tx3);padding:20px">No contacts yet</td></tr>'; return; }
+  tb.innerHTML = list.map(c=>`<tr>
+    <td><b style="font-weight:600">${c.name}</b></td>
+    <td style="color:var(--tx2)">${c.phone}</td>
+    <td>${c.label?`<span class="badge bg-amber">${c.label}</span>`:''}</td>
+    <td style="color:var(--tx2)">${c.messages[c.messages.length-1]?.text||''}</td>
+    <td><span class="badge ${c.status==='open'?'bg-blue':'bg-green'}">${c.status}</span></td>
+  </tr>`).join('');
+}
+
+// ── SETTINGS / HEALTH ─────────────────────────────────────────────────────────
+async function loadHealth() {
+  try {
+    const h = await fetch('/api/health').then(r=>r.json());
+    document.getElementById('health-status').innerHTML = Object.entries(h).map(([k,v])=>
+      `<div style="margin-bottom:6px"><span style="font-family:monospace;font-size:12px;background:var(--bg2);padding:2px 8px;border-radius:4px">${k}</span>  ${v}</div>`
+    ).join('');
+  } catch(e) { document.getElementById('health-status').textContent='Cannot reach server'; }
+}
+
+async function sendTestMsg() {
+  const to  = document.getElementById('test-to').value.trim();
+  const msg = document.getElementById('test-msg').value.trim();
+  const st  = document.getElementById('test-status');
+  if (!to||!msg) return toast('Fill in both fields');
+  st.textContent='Sending…';
+  try {
+    const r = await fetch('/api/send-message',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to,message:msg})}).then(r=>r.json());
+    st.textContent = r.success ? '✅ Sent!' : '❌ '+JSON.stringify(r.error);
+  } catch(e) { st.textContent='❌ Network error'; }
+}
+
+// ── NAV ───────────────────────────────────────────────────────────────────────
+const VIEWS = ['inbox','contacts','broadcast','templates','analytics','settings'];
+function nav(page) {
+  VIEWS.forEach(v=>{ const el=document.getElementById('v-'+v); if(el)el.classList.remove('active'); });
+  const el=document.getElementById('v-'+page); if(el)el.classList.add('active');
+  document.querySelectorAll('.s-btn').forEach(b=>b.classList.remove('active'));
   const map={inbox:0,contacts:1,broadcast:2,templates:3,analytics:4,settings:5};
-  if(btns[map[page]])btns[map[page]].classList.add('active');
+  document.querySelectorAll('.s-btn')[map[page]]?.classList.add('active');
+  if(page==='templates')loadTemplates();
+  if(page==='analytics')updateAnalytics();
+  if(page==='contacts')updateContactsPage();
+  if(page==='settings')loadHealth();
 }
-function setTab(el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
-function toggleBcast(){const f=document.getElementById('bcast-form');f.style.display=f.style.display==='none'?'block':'none';}
-buildChatList();buildContactList();buildLabelBars();openChat(0,null);
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+connectSSE();
+loadConvos();
+loadTemplates(); // pre-load for picker
 </script>
 </body>
 </html>
