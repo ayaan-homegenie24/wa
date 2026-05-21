@@ -29,14 +29,14 @@ PHONE_NUMBER_ID=1086781974512221
 #    Source: Meta Business Manager → System Users → Generate Token
 #    (Grant whatsapp_business_messaging + whatsapp_business_management)
 # ----------------------------------------------------------
-ACCESS_TOKEN=<<<REPLACE_THIS_PERMANENT_ACCESS_TOKEN>>>
+ACCESS_TOKEN=EAAXX23e6Th4BRNb7YitkHSA2yu5mtAPYIZCC76kX9T3DHZCRGUHGrNGRXRHhFfZCwHc4xnVsGeXhMrAlWite6vGZCoMAWQp85ZAw2Xxwg3UNqY4NNvobyHgiBfnoZBIZCz5vAGHIFoLUcilZBfN5koWBZBRi3YRDZAbiL6k2VoVyjM5GlpZAft74fYX76DAbQlsnAZDZD
 
 # ----------------------------------------------------------
 # 5. WEBHOOK VERIFY TOKEN
 #    This is a string YOU invent — can be anything, e.g. "my_secret_123"
 #    Must match exactly what you enter in the Meta webhook config screen
 # ----------------------------------------------------------
-WEBHOOK_VERIFY_TOKEN=EAAXX23e6Th4BRNb7YitkHSA2yu5mtAPYIZCC76kX9T3DHZCRGUHGrNGRXRHhFfZCwHc4xnVsGeXhMrAlWite6vGZCoMAWQp85ZAw2Xxwg3UNqY4NNvobyHgiBfnoZBIZCz5vAGHIFoLUcilZBfN5koWBZBRi3YRDZAbiL6k2VoVyjM5GlpZAft74fYX76DAbQlsnAZDZD
+WEBHOOK_VERIFY_TOKEN=my_verification_token_241998
 
 # ----------------------------------------------------------
 # 6. API VERSION
