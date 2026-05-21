@@ -13,7 +13,10 @@ const axios = require("axios");
 const app = express();
 
 app.use(express.json());
-app.use(express.static("../frontend"));
+app.use(express.static(path.join(__dirname, "../frontend")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
+});
 
 // ----------------------------------------------------------
 // CONFIG — loaded from .env (no hardcoded credentials here)
@@ -32,9 +35,8 @@ const BASE_URL = `https://graph.facebook.com/${GRAPH_API_VERSION}`;
 // ----------------------------------------------------------
 // HEALTH CHECK
 // ----------------------------------------------------------
-app.get("/", (req, res) => {
+app.get("/api/health", (req, res) => {
   res.json({
-    status: "running",
     phone_number_id: PHONE_NUMBER_ID ? "✅ set" : "❌ MISSING",
     access_token: ACCESS_TOKEN ? "✅ set" : "❌ MISSING",
     webhook_token: WEBHOOK_VERIFY_TOKEN ? "✅ set" : "❌ MISSING",
